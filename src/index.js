@@ -20,6 +20,10 @@ const router = createBrowserRouter([
     element: <App/>,
   },
   {
+    path: "ReactPages",
+    element: <App/>,
+  },
+  {
     path: "pagina1",
     element: <Pagina1/>,
   },
