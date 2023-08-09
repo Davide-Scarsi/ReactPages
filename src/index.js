@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import Pagina1 from './pages/pagina1';
 import Pagina2 from './pages/pagina2';
-import Pagina3 from './pages/pagina3';
 import NoPage from './pages/nopage';
 
 const router = createBrowserRouter([
@@ -30,10 +29,6 @@ const router = createBrowserRouter([
   {
     path: "pagina2",
     element: <Pagina2/>,
-  },
-  {
-    path: "pagina3",
-    element: <Pagina3/>,
   },
   {
     path: "*",
