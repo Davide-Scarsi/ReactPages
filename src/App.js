@@ -1,25 +1,18 @@
+import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/navbar/navbar';
 import HeroCard from './components/hero/hero-card';
-import React from 'react';
 import { useState, useEffect } from 'react';
+
 
 
 function App() {
 
-  function DrinkPotion() {
-    if (inventory.potions !== 0) {
+  const defaultInventory = { gold: 10, potions: 3, currentHp: 80, }
 
-      inventory.potions--
-
-      let maxval = 100;
-      let constant = 5;
-      inventory.currentHp = Math.min(inventory.currentHp + constant, maxval);
-    }
-  }
-
-  const [inventory, setInventory] = useState({ gold: 0, potions: 3, currentHp: 80, });
+  const [inventory, setInventory] = useState(defaultInventory);
+  
 
   // Questa funzione parte la prima volta che viene caricata la pagina e va a caricare INVENTARIO dal local storage
   useEffect(() => {
@@ -33,6 +26,28 @@ function App() {
   }, [inventory])
 
 
+  function DrinkPotion(i) {
+    if (i.potions !== 0) {
+
+      i.potions--
+
+      let maxval = 100;
+      let constant = 5;
+      i.currentHp = Math.min(i.currentHp + constant, maxval);
+      return JSON.stringify(i)
+    } else {return JSON.stringify(i)}
+  }
+  
+  function addPotion(i){
+     i.potions++
+     return JSON.stringify(i)
+  }
+
+  function resetInventory(i){
+    return JSON.stringify(i)
+ }
+
+  
 
   return (
     <>
@@ -42,7 +57,9 @@ function App() {
         <div className='row d-flex justify-content-center'>
           <div className='col-3'>
             <HeroCard inventory={inventory} />
-            <button type="button" onClick={DrinkPotion()} >Bevi pozione</button>
+            <button type="button" onClick={()=>setInventory(JSON.parse(DrinkPotion(inventory)))} >BEVI POZIONE</button>
+            <button type="button" onClick={()=>setInventory(JSON.parse(addPotion(inventory)))} >AGGIUNGI</button>
+            <button type="button" onClick={()=>setInventory(JSON.parse(resetInventory(defaultInventory)))} >RESET</button>
            
           </div>
         </div>
@@ -54,6 +71,7 @@ function App() {
 
     </>
   );
+
 
 }
 
