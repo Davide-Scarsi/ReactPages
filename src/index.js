@@ -9,12 +9,15 @@ import reportWebVitals from './reportWebVitals';
 // IMPORTATI DA ME
 import 'bootstrap/dist/css/bootstrap.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Pagina1 from './pages/pagina1';
+import Market from './pages/market';
 import Pagina2 from './pages/pagina2';
 import NoPage from './pages/nopage';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
   {
+  
+
     path: "/",
     element: <App />,
   },
@@ -23,8 +26,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "pagina1",
-    element: <Pagina1 />,
+    path: "market",
+    element: <Market />,
   },
   {
     path: "pagina2",

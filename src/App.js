@@ -9,13 +9,13 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  const defaultInventory = { gold: 10, potions: 3, currentHp: 80, }
+  const defaultInventory = { gold: 10, potions: 3, currentHp: 50, }
 
   const [inventory, setInventory] = useState(defaultInventory);
   
 
   // Questa funzione parte la prima volta che viene caricata la pagina e va a caricare INVENTARIO dal local storage
-  useEffect(() => {
+  useEffect( () => {
     const data = window.localStorage.getItem('INVENTARIO')
     if (data !== null) { setInventory(JSON.parse(data)) }
   }, [])
@@ -27,7 +27,7 @@ function App() {
 
 
   function DrinkPotion(i) {
-    if (i.potions !== 0) {
+    if ((i.potions !== 0)&&(i.currentHp!==100)) {
 
       i.potions--
 
@@ -83,3 +83,6 @@ export default App;
 // USARE LOCAL O SESSION STORAGE
 
 // CTRL + SHIF + R PER SVUOTARE LA CACHE
+
+// npm run deploy
+

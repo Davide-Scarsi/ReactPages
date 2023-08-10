@@ -13,7 +13,7 @@ export default function Navbar() {
                                 <Link className="nav-link navbar-brand" to="/">Hero</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link " to="/pagina1">Store</Link>
+                                <Link className="nav-link " to="/market">Market</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link " to="/pagina2">Fight</Link>
