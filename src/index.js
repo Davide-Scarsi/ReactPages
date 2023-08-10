@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 // IMPORTATI DA ME
 import 'bootstrap/dist/css/bootstrap.css';
-import {createBrowserRouter,RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Pagina1 from './pages/pagina1';
 import Pagina2 from './pages/pagina2';
 import NoPage from './pages/nopage';
@@ -16,31 +16,32 @@ import NoPage from './pages/nopage';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
   },
   {
     path: "ReactPages",
-    element: <App/>,
+    element: <App />,
   },
   {
     path: "pagina1",
-    element: <Pagina1/>,
+    element: <Pagina1 />,
   },
   {
     path: "pagina2",
-    element: <Pagina2/>,
+    element: <Pagina2 />,
   },
   {
     path: "*",
-    element: <NoPage/>,
+    element: <NoPage />,
   },
 ]);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <>
     <RouterProvider router={router} />
-
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function
