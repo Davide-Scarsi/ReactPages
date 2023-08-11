@@ -1,0 +1,11 @@
+.item-box{
+    height: 80px;
+    width: 80px;
+    border: 10px solid transparent;
+    border-image: url(../../images/border.png) 100 round;
+    margin: 0;
+}
+
+.img-inside{
+    max-width: 60%;
+}

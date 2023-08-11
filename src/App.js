@@ -6,6 +6,14 @@ import HeroCard from './components/hero/hero-card';
 import { useState, useEffect } from 'react';
 
 
+//NavActive
+const active = {
+  heroColor : {color: "var(--activeColor)"},
+  marketColor: {color: "black"},
+  fightColor: {color: "black"}
+
+}
+
 
 function App() {
 
@@ -32,7 +40,7 @@ function App() {
       i.potions--
 
       let maxval = 100;
-      let constant = 5;
+      let constant = 10;
       i.currentHp = Math.min(i.currentHp + constant, maxval);
       return JSON.stringify(i)
     } else {return JSON.stringify(i)}
@@ -51,10 +59,11 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar active={active}/>
 
       <div className="container-fluid">
         <div className='row d-flex justify-content-center'>
+     
           <div className='col-3'>
             <HeroCard inventory={inventory} />
             <button type="button" onClick={()=>setInventory(JSON.parse(DrinkPotion(inventory)))} >BEVI POZIONE</button>
@@ -62,6 +71,7 @@ function App() {
             <button type="button" onClick={()=>setInventory(JSON.parse(resetInventory(defaultInventory)))} >RESET</button>
            
           </div>
+      
         </div>
 
       </div>

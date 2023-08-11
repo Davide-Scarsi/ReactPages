@@ -1,17 +1,24 @@
 import React from 'react'
 import Navbar from '../components/navbar/navbar';
 import MarketTab from '../components/market/market-tab';
-import { useState, useEffect } from 'react';
+
+
+
+
+//NavActive
+const active = {
+    heroColor : {color: "black"},
+    marketColor: {color: "var(--activeColor)"},
+    fightColor: {color: "black"}
+
+}
 
 export default function Market() {
-
-
-
 
     
     return (
         <>
-            <Navbar />
+            <Navbar active={active}/>
             <MarketTab/>
             
             

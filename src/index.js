@@ -5,21 +5,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import Navbar from './components/navbar/navbar'
+
 
 // IMPORTATI DA ME
 import 'bootstrap/dist/css/bootstrap.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Market from './pages/market';
-import Pagina2 from './pages/pagina2';
+import Fight from './pages/fight';
 import NoPage from './pages/nopage';
 
 const router = createBrowserRouter(
   [
   {
-  
-
     path: "/",
-    element: <App />,
+    element: <App/>
   },
   {
     path: "ReactPages",
@@ -30,8 +30,8 @@ const router = createBrowserRouter(
     element: <Market />,
   },
   {
-    path: "pagina2",
-    element: <Pagina2 />,
+    path: "fight",
+    element: <Fight />,
   },
   {
     path: "*",
