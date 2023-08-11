@@ -28,8 +28,8 @@ export default class MonsterCard extends Component {
                         <p className="card-text me-1">{(this.props.monsterCard.currentHp)*(this.props.monsterCard.hpMultiplayer)}/{this.props.monsterCard.maxHp} HP:</p>
 
                         {/* // HP BAR */}
-                        <div className="hp-bar-container">
-                            <div className="hp-bar" style={{ width: `${this.props.monsterCard.currentHp}%` }}>
+                        <div className="monster-hp-bar-container">
+                            <div className="monster-hp-bar" style={{ width: `${this.props.monsterCard.currentHp}%` }}>
                                 <div className="text-white"></div>
                             </div>
                         </div>

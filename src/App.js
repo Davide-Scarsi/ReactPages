@@ -4,6 +4,8 @@ import './App.css';
 import Navbar from './components/navbar/navbar';
 import HeroCard from './components/hero/hero-card';
 import { useState, useEffect } from 'react';
+// IMPORTO LIST EROI
+import {heroesList} from './components/hero/heroes-list'
 
 
 //NavActive
@@ -13,6 +15,7 @@ const active = {
   fightColor: {color: "black"}
 
 }
+
 
 
 function App() {
@@ -65,7 +68,7 @@ function App() {
         <div className='row d-flex justify-content-center'>
      
           <div className='col-3'>
-            <HeroCard inventory={inventory} />
+            <HeroCard inventory={inventory} Later = {heroesList.Later}/>
             <button type="button" onClick={()=>setInventory(JSON.parse(DrinkPotion(inventory)))} >BEVI POZIONE</button>
             <button type="button" onClick={()=>setInventory(JSON.parse(addPotion(inventory)))} >AGGIUNGI</button>
             <button type="button" onClick={()=>setInventory(JSON.parse(resetInventory(defaultInventory)))} >RESET</button>

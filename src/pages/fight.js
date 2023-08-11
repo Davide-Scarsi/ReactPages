@@ -1,9 +1,11 @@
 import React from 'react'
 import Navbar from '../components/navbar/navbar';
-import MonsterCard from '../components/monster-card/monster-card';
+import MonsterCard from '../components/monster/monster-card';
 import BoarImg from '../images/boar.png'
 import { useState, useEffect } from 'react';
 import HeroCardBehind from '../components/hero/hero-card-behind'
+// IMPORTO LISTA MOSTRI
+import {monstersList} from '../components/monster/monsters-list'
 
 //NavActive
 const active = {
@@ -14,16 +16,6 @@ const active = {
 }
 
 
-//Boar
-const boar = {
-    name: "Boar",
-    maxHp: 200,
-    hpMultiplayer: 2,
-    currentHp: 100,
-    img: BoarImg,
-    attack: 30,
-    defence: 0
-}
 
 export default function Fight() {
 
@@ -51,7 +43,7 @@ export default function Fight() {
                         <HeroCardBehind inventory = {inventory}/>
                     </div>
                     <div className='col-4 all-centered'>
-                        <MonsterCard monsterCard = {boar}/>
+                        <MonsterCard monsterCard = {monstersList.boar}/>
                     </div>
                 </div>
             </div>

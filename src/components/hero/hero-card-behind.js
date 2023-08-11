@@ -2,8 +2,6 @@ import '../../index.css'
 import "./hero-card.css"
 import React, { Component } from 'react';
 import HeroBehind from '../../images/heroBehind.png';
-import PotionImg from '../../images/potion.png';
-import PotionImgG from '../../images/potionG.png';
 
 // Later
 const Later = {

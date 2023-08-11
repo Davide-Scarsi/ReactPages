@@ -1,19 +1,8 @@
 import '../../index.css'
 import "./hero-card.css"
 import React, { Component } from 'react';
-import LaterImg from '../../images/Later.png';
 import PotionImg from '../../images/potion.png';
 import PotionImgG from '../../images/potionG.png';
-
-// Later
-const Later = {
-    name: "Later",
-    maxHp: 500,
-    hpMultiplayer: 5,
-    img: LaterImg,
-    attack: 80,
-    defence: 10
-}
 
 
 
@@ -24,7 +13,6 @@ export default class HeroCard extends Component {
 
       }
 
-      
       
       render() {
 
@@ -37,13 +25,13 @@ export default class HeroCard extends Component {
         return (
 
             <div className="card"  >
-                <img className="card-img-top img-properties" src={Later.img} alt="Card image cap" />
+                <img className="card-img-top img-properties" src={this.props.Later.frontImg} alt="Card image cap" />
                 <div className="card-body">
 
-                    <h5 className="card-title">{Later.name}</h5>
+                    <h5 className="card-title">{this.props.Later.name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{this.props.inventory.currentHp*Later.hpMultiplayer}/{Later.maxHp} HP:</p>
+                        <p className="card-text me-1">{this.props.inventory.currentHp*this.props.Later.hpMultiplayer}/{this.props.Later.maxHp} HP:</p>
 
                         {/* // HP BAR */}
                         <div className="hp-bar-container">
@@ -53,8 +41,8 @@ export default class HeroCard extends Component {
                         </div>
 
                     </div>
-                    <p className="card-text">ATTACCO: {Later.attack}</p>
-                    <p className="card-text">DIFESA: {Later.defence}</p>
+                    <p className="card-text">ATTACCO: {this.props.Later.attack}</p>
+                    <p className="card-text">DIFESA: {this.props.Later.defence}</p>
                     <div className='d-flex'>
                     <p>POZIONI: {this.props.inventory.potions}</p>              
                     {updatedPotionImg}
