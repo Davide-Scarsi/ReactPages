@@ -11,7 +11,7 @@ export default class MarketTab extends Component {
     constructor(props) {
         super(props);
         
-        this.state = {
+        this.state = { 
             inventory: window.localStorage.getItem('INVENTARIO'),
         }
 
@@ -38,7 +38,7 @@ export default class MarketTab extends Component {
         return ( 
 
      
-            <div className='container'>
+            <div className='container '>
                 <table className="table table-bordered">
                     <thead>
                         <tr>

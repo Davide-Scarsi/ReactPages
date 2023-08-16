@@ -3,23 +3,32 @@ import "./monster-card.css"
 import React, { Component } from 'react';
 
 
-
 export default class MonsterCard extends Component {
 
     constructor(props) {
         super(props);
 
+       
       }
 
-      
-      
       render() {
+          
+          // Tricolore barra degli hp
+          let hpBarColor
+          if(this.props.mobStats.mobCurrentHp>=50){
+              hpBarColor = 'green'} 
+          else if (this.props.mobStats.mobCurrentHp>25 && this.props.mobStats.mobCurrentHp <= 50  ){
+              hpBarColor = 'yellow'}
+          else if(this.props.mobStats.mobCurrentHp<25){
+              hpBarColor = 'red'
+          }
 
-  
+     
         return (
 
             <div className="ms-5"  >
-                <img className="card-img-top img-properties" src={this.props.monsterCard.img} alt="Card image cap" />
+                
+                <img className="card-img-top " src={this.props.monsterImg} alt="Card image cap" />
                 <div className="card-body">
 
                     <h5 className="card-title">{this.props.monsterCard.name}</h5>
@@ -29,7 +38,7 @@ export default class MonsterCard extends Component {
 
                         {/* // HP BAR */}
                         <div className="monster-hp-bar-container">
-                            <div className="monster-hp-bar" style={{ width: `${this.props.mobStats.mobCurrentHp}%` }}>
+                            <div className="monster-hp-bar" style={{ width: `${this.props.mobStats.mobCurrentHp}%`, border: `1px solid black` , backgroundColor: `${hpBarColor}` }}>
                                 <div className="text-white"></div>
                             </div>
                         </div>

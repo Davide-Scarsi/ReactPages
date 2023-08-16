@@ -22,6 +22,16 @@ export default class HeroCard extends Component {
         } else updatedPotionImg = <img className='img-pozione' src={PotionImgG}/>
 
 
+        // Tricolore barra degli hp
+        let hpBarColor
+        if(this.props.inventory.currentHp>=50){
+            hpBarColor = 'green'} 
+        else if (this.props.inventory.currentHp>25 && this.props.inventory.currentHp <= 50  ){
+            hpBarColor = 'yellow'}
+        else if(this.props.inventory.currentHp<25){
+            hpBarColor = 'red'
+        }
+
         return (
 
             <div className="card"  >
@@ -35,7 +45,7 @@ export default class HeroCard extends Component {
 
                         {/* // HP BAR */}
                         <div className="hp-bar-container">
-                            <div className="hp-bar" style={{ width: `${this.props.inventory.currentHp}%` }}>
+                            <div className="hp-bar" style={{ width: `${this.props.inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` , border: `1px solid black`}}>
                                 <div className="text-white"></div>
                             </div>
                         </div>

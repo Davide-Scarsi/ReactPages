@@ -1,7 +1,6 @@
 import '../../index.css'
 import "./hero-card.css"
 import React, { Component } from 'react';
-import HeroBehind from '../../images/heroBehind.png';
 // IMPORTO LIST EROI
 import {heroesList} from './heroes-list'
 
@@ -12,16 +11,22 @@ export default class HeroCardBehind extends Component {
     constructor(props) {
         super(props);
         
-        this.state = {
-            inventory: window.localStorage.getItem('INVENTARIO'),
-        }
-
+      
     }
 
       
       
       render() {
 
+        // Tricolore barra degli hp
+        let hpBarColor
+        if(this.props.inventory.currentHp>=50){
+            hpBarColor = 'green'} 
+        else if (this.props.inventory.currentHp>25 && this.props.inventory.currentHp <= 50  ){
+            hpBarColor = 'yellow'}
+        else if(this.props.inventory.currentHp<25){
+            hpBarColor = 'red'
+        }
        
 
 
@@ -34,11 +39,11 @@ export default class HeroCardBehind extends Component {
                     <h5 className="card-title">{heroesList.Later.name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{JSON.parse(this.state.inventory).currentHp*heroesList.Later.hpMultiplayer}/{heroesList.Later.maxHp} HP:</p>
+                        <p className="card-text me-1">{this.props.inventory.currentHp*heroesList.Later.hpMultiplayer}/{heroesList.Later.maxHp} HP:</p>
 
                         {/* // HP BAR */}
                         <div className="hp-bar-container">
-                            <div className="hp-bar" style={{ width: `${JSON.parse(this.state.inventory).currentHp}%` }}>
+                            <div className="hp-bar" style={{ width: `${this.props.inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` }}>
                                 <div className="text-white"></div>
                             </div>
                         </div>

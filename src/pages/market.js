@@ -1,3 +1,4 @@
+import './market.css'
 import React from 'react'
 import Navbar from '../components/navbar/navbar';
 import MarketTab from '../components/market/market-tab';
@@ -18,9 +19,13 @@ export default function Market() {
     
     return (
         <>
+            <div className='bg-secondary Market-background'>
             <Navbar active={active}/>
-            <MarketTab/>
-            
+            <div className='pt-5'>
+                <MarketTab/>
+            </div>
+
+            </div>
             
         </>
 

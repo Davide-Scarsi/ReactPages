@@ -64,8 +64,8 @@ function App() {
     <>
       <Navbar active={active}/>
 
-      <div className="container-fluid">
-        <div className='row d-flex justify-content-center'>
+      <div className="container-fluid bg-secondary">
+        <div className='row App-background d-flex justify-content-center pt-5'>
      
           <div className='col-3'>
             <HeroCard inventory={inventory} Later = {heroesList.Later}/>
