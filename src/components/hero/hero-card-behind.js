@@ -2,16 +2,8 @@ import '../../index.css'
 import "./hero-card.css"
 import React, { Component } from 'react';
 import HeroBehind from '../../images/heroBehind.png';
-
-// Later
-const Later = {
-    name: "Later",
-    maxHp: 500,
-    hpMultiplayer: 5,
-    img: HeroBehind,
-    attack: 80,
-    defence: 10
-}
+// IMPORTO LIST EROI
+import {heroesList} from './heroes-list'
 
 
 
@@ -35,14 +27,14 @@ export default class HeroCardBehind extends Component {
 
         return (
 
-            <div className="card"  >
-                <img className="card-img-top img-properties" src={Later.img}  alt="Card image cap" />
+            <div className="mt-5"  >
+                <img className="card-img-top img-properties" src={heroesList.Later.backImg}  alt="Card image cap" />
                 <div className="card-body">
 
-                    <h5 className="card-title">{Later.name}</h5>
+                    <h5 className="card-title">{heroesList.Later.name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{JSON.parse(this.state.inventory).currentHp*Later.hpMultiplayer}/{Later.maxHp} HP:</p>
+                        <p className="card-text me-1">{JSON.parse(this.state.inventory).currentHp*heroesList.Later.hpMultiplayer}/{heroesList.Later.maxHp} HP:</p>
 
                         {/* // HP BAR */}
                         <div className="hp-bar-container">
