@@ -1,60 +1,60 @@
 import '../../index.css'
 import "./hero-card.css"
-import React, { Component } from 'react';
+import React from 'react';
 import PotionImg from '../../images/potion.png';
 import PotionImgG from '../../images/potionG.png';
+import { useContext } from 'react';
+
+//IMPORT PROPS
+import { inventoryContext } from '../../App'
+import { LaterContext } from '../../App'
 
 
-
-export default class HeroCard extends Component {
-
-    constructor(props) {
-        super(props);
-
-      }
-
-      
-      render() {
+export default function HeroCard () {
+ 
+        //PROPS
+        const inventory = useContext(inventoryContext);
+        const Later = useContext(LaterContext);
 
         let updatedPotionImg = <></>
-        if(this.props.inventory.potions!==0){
-            updatedPotionImg = <img className='img-pozione' src={PotionImg}/>
-        } else updatedPotionImg = <img className='img-pozione' src={PotionImgG}/>
+        if(inventory.potions!==0){
+            updatedPotionImg = <img className='img-pozione' src={PotionImg} alt=''/>
+        } else updatedPotionImg = <img className='img-pozione' src={PotionImgG} alt=''/>
 
 
         // Tricolore barra degli hp
         let hpBarColor
-        if(this.props.inventory.currentHp>=50){
+        if(inventory.currentHp>=50){
             hpBarColor = 'green'} 
-        else if (this.props.inventory.currentHp>25 && this.props.inventory.currentHp <= 50  ){
+        else if (inventory.currentHp>25 && inventory.currentHp <= 50  ){
             hpBarColor = 'yellow'}
-        else if(this.props.inventory.currentHp<25){
+        else if(inventory.currentHp<25){
             hpBarColor = 'red'
         }
 
         return (
 
             <div className="card"  >
-                <img className="card-img-top img-properties" src={this.props.Later.frontImg} alt="Card image cap" />
+                <img className="card-img-top img-properties" src={Later.frontImg} alt=''/>
                 <div className="card-body">
 
-                    <h5 className="card-title">{this.props.Later.name}</h5>
+                    <h5 className="card-title">{Later.name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{this.props.inventory.currentHp*this.props.Later.hpMultiplayer}/{this.props.Later.maxHp} HP:</p>
+                        <p className="card-text me-1">{inventory.currentHp*Later.hpMultiplayer}/{Later.maxHp} HP:</p>
 
                         {/* // HP BAR */}
                         <div className="hp-bar-container">
-                            <div className="hp-bar" style={{ width: `${this.props.inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` , border: `1px solid black`}}>
+                            <div className="hp-bar" style={{ width: `${inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` , border: `1px solid black`}}>
                                 <div className="text-white"></div>
                             </div>
                         </div>
 
                     </div>
-                    <p className="card-text">ATTACCO: {this.props.Later.attack}</p>
-                    <p className="card-text">DIFESA: {this.props.Later.defence}</p>
+                    <p className="card-text">ATTACCO: {Later.attack}</p>
+                    <p className="card-text">DIFESA: {Later.defence}</p>
                     <div className='d-flex'>
-                    <p>POZIONI: {this.props.inventory.potions}</p>              
+                    <p>POZIONI: {inventory.potions}</p>              
                     {updatedPotionImg}
                     
 
@@ -65,5 +65,5 @@ export default class HeroCard extends Component {
 
          
 
-    }
+    
 };

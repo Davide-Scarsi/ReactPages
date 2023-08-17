@@ -6,7 +6,7 @@ import HeroCard from './components/hero/hero-card';
 import { useState, useEffect } from 'react';
 // IMPORTO LIST EROI
 import {heroesList} from './components/hero/heroes-list'
-
+import { createContext } from 'react';
 
 //NavActive
 const active = {
@@ -18,10 +18,14 @@ const active = {
 
 
 
+// EXPORT PROPS
+export const inventoryContext = createContext(null);
+export const LaterContext = createContext(null);
+
 function App() {
-
+  
   const defaultInventory = { gold: 10, potions: 3, currentHp: 50, }
-
+  
   const [inventory, setInventory] = useState(defaultInventory);
   
 
@@ -58,9 +62,9 @@ function App() {
     return JSON.stringify(i)
  }
 
-  
 
   return (
+
     <>
       <Navbar active={active}/>
 
@@ -68,7 +72,14 @@ function App() {
         <div className='row App-background d-flex justify-content-center pt-5'>
      
           <div className='col-3'>
-            <HeroCard inventory={inventory} Later = {heroesList.Later}/>
+          <LaterContext.Provider value={heroesList.Later}>
+          
+            <inventoryContext.Provider value={inventory}>
+              <HeroCard/>
+            </inventoryContext.Provider>
+         
+          </LaterContext.Provider>
+            
             <button type="button" onClick={()=>setInventory(JSON.parse(DrinkPotion(inventory)))} >BEVI POZIONE</button>
             <button type="button" onClick={()=>setInventory(JSON.parse(addPotion(inventory)))} >AGGIUNGI</button>
             <button type="button" onClick={()=>setInventory(JSON.parse(resetInventory(defaultInventory)))} >RESET</button>
@@ -98,4 +109,6 @@ export default App;
 // CTRL + SHIF + R PER SVUOTARE LA CACHE
 
 // npm run deploy
+
+// npx kill-port 3000
 

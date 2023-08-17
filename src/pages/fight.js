@@ -47,7 +47,7 @@ export default function Fight() {
     window.localStorage.setItem('MOBSTATS', JSON.stringify(mobStats))
   }, [mobStats])
 
-  let p
+  
   const lock = document.getElementById(`lock`)
 
 

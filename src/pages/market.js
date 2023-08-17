@@ -2,7 +2,7 @@ import './market.css'
 import React from 'react'
 import Navbar from '../components/navbar/navbar';
 import MarketTab from '../components/market/market-tab';
-
+import { useState, useEffect } from 'react';
 
 
 
@@ -14,9 +14,12 @@ const active = {
 
 }
 
-export default function Market() {
 
+
+export default function Market() {
     
+    
+
     return (
         <>
             <div className='bg-secondary Market-background'>
