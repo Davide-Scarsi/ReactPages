@@ -1,4 +1,5 @@
 import './fight.css'
+import '../index.css'
 import React from 'react'
 import Navbar from '../components/navbar/navbar';
 import MonsterCard from '../components/monster/monster-card';
@@ -10,6 +11,7 @@ import { monstersList } from '../components/monster/monsters-list'
 import { heroesList } from '../components/hero/heroes-list';
 import ripImg from '../images/rip.png';
 import { createContext } from 'react';
+import { Link } from "react-router-dom";
 
 //NavActive
 const active = {
@@ -28,13 +30,14 @@ export const mobImgContext = createContext(null);
 
 
 const defaultMobStats = { mobCurrentHp: 100, p: "" }
+const defaultInventory = { gold: 10, potions: 3, currentHp: 100, }
 
 
 export default function Fight() {
 
-  const [inventory, setInventory] = useState({ gold: 10, potions: 3, currentHp: 50, });
-
+  
   const [mobStats, setMobStats] = useState(defaultMobStats);
+  const [inventory, setInventory] = useState(defaultInventory);
 
 
   // Questa funzione parte la prima volta che viene caricata la pagina e va a caricare INVENTARIO dal local storage
@@ -56,6 +59,7 @@ export default function Fight() {
 
 
   const lock = document.getElementById(`lock`)
+  const deathScreen = document.getElementById(`deathScreen`)
 
 
 
@@ -65,7 +69,7 @@ export default function Fight() {
   function fight() {
 
     // Fa apparire uno schermo invisibie che ricopre la pagina
-    lock.style.display = `block`
+    lock.style.display = ``
 
     let mobStatsUpdater
     let inventoryUpdater
@@ -116,12 +120,23 @@ export default function Fight() {
         lock.style.display = `none`
 
 
+        if (inventory.currentHp === 0) {
+
+          setMobStats(defaultMobStats)
+          setInventory(defaultInventory)
+          
+
+          deathScreen.style.display = ``
+          lock.style.display = ``
+        }
+
       }, 2000);
 
     }, 2000);
 
   }
 
+  // Cambia immagine da Mob vivo a morto
   let imgSwitch
   if (mobStats.mobCurrentHp === 0) {
     imgSwitch = ripImg
@@ -134,14 +149,24 @@ export default function Fight() {
     setMobStats(Update)
   }
 
+  function removeDeathScrean(){
+    deathScreen.style.display = `none`
+          lock.style.display = `none`
+  }
+
   return (
     <>
       <div id="lock" style={{ display: `none`, position: `absolute`, top: `0`, zIndex: `10`, height: `100vh`, width: `100vw` }}>lock</div>
 
-      <div className='bg-secondary Fight-background'>
+      <div className='bg-secondary Fight-background '>
         <Navbar active={active} />
         <div className='container pt-5' >
-          <div className='row all-centered bg-dark rounded text-white '>
+
+          <div className='row all-centered bg-dark rounded text-white position-relative'>
+            <div id="deathScreen" className='death-screen all-centered ' style={{ display: `none` }}>
+              <h1>SEI MORTO</h1>
+              <Link className="nav-link" onClick={()=>removeDeathScrean()}  to="/">RIPROVA</Link>
+            </div>
             <div className='col-6 all-centered'>
               <div>
                 <HeroCardBehind inventory={inventory} />
@@ -155,6 +180,7 @@ export default function Fight() {
                   </mobImgContext.Provider></mobStatsContext.Provider></monstersListContext.Provider>
             </div>
           </div>
+
           <div className='row text-white'>
             <div className='col-12 all-centered flex-column'>
               <p className='h3'>{mobStats.p}</p>

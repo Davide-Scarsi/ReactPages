@@ -24,7 +24,7 @@ export const LaterContext = createContext(null);
 
 function App() {
   
-  const defaultInventory = { gold: 10, potions: 3, currentHp: 50, }
+  const defaultInventory = { gold: 10, potions: 3, currentHp: 100, }
   
   const [inventory, setInventory] = useState(defaultInventory);
   

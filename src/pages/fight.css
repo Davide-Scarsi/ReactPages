@@ -1,3 +1,13 @@
 .Fight-background {
     height: 100vh;
 }
+
+.death-screen{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    z-index: 20;
+    flex-direction: column;
+}
