@@ -47,14 +47,14 @@ export default function Fight() {
 
     setMobStats({ mobCurrentHp: 100, p: "", p2:"" })
     
-    let random = Math.floor(Math.random() * (Object.keys(monstersList).length - 1 + 1) + 1)
-    console.log(random);
-    let randomMob = monstersList.filter(e => e.id == random)
+    let randomNumber = Math.floor(Math.random() * (Object.keys(monstersList).length))
+  
     
-    console.log(Object (...randomMob));
+    
+    
     setfightStatus({display : `none`})
+    setselector(monstersList[randomNumber])
 
-    setselector(randomMob)
   }
   
   
@@ -64,10 +64,9 @@ export default function Fight() {
   const [mobStats, setMobStats] = useState(defaultMobStats);
   const [inventory, setInventory] = useState(defaultInventory);
   const [fightStatus, setfightStatus] = useState({display : ``});
-  const [selector, setselector] = useState(monstersList);
+  const [selector, setselector] = useState(monstersList[0]);
 
   
-  let currentMob = selector[0]
 
   
   // Questa funzione parte la prima volta che viene caricata la pagina e va a caricare INVENTARIO dal local storage
@@ -78,6 +77,8 @@ export default function Fight() {
     if (data2 !== null) { setMobStats(JSON.parse(data2)) }
     const data3 = window.localStorage.getItem('FIGHTSTATUS')
     if (data3 !== null) { setfightStatus(JSON.parse(data3)) }
+    const data4 = window.localStorage.getItem('SELECTOR')
+    if (data4 !== null) { setselector(JSON.parse(data4)) }
   }, [])
 
   // Questa funzione è alle dipendenze di "inventory" e parte ogni volta che inventory cambia
@@ -94,7 +95,7 @@ export default function Fight() {
   }, [fightStatus])
 
   useEffect(() => {
-    currentMob = selector[0]
+    window.localStorage.setItem('SELECTOR', JSON.stringify(selector))
   }, [selector])
 
 
@@ -114,9 +115,8 @@ export default function Fight() {
     let inventoryUpdater
     
 
-    console.log(currentMob);
 
-    mobStats.mobCurrentHp = Math.max(mobStats.mobCurrentHp - (heroesList.Later.attack / currentMob.hpMultiplayer), 0)
+    mobStats.mobCurrentHp = Math.round(Math.max(mobStats.mobCurrentHp - (heroesList.Later.attack / selector.hpMultiplayer), 0))
     
     mobStats.p = "Hai attaccato con successo!!"
 
@@ -129,7 +129,7 @@ export default function Fight() {
 
 
       if (mobStats.mobCurrentHp !== 0) {
-        inventory.currentHp = Math.max(inventory.currentHp - (currentMob.attack / heroesList.Later.hpMultiplayer), 0)
+        inventory.currentHp = Math.max(inventory.currentHp - (selector.attack / heroesList.Later.hpMultiplayer), 0)
 
         inventoryUpdater = { ...inventory }
         setInventory(inventoryUpdater)
@@ -176,6 +176,13 @@ export default function Fight() {
           lock.style.display = ``
         }
 
+        setTimeout(() => {
+          
+          if (mobStats.mobCurrentHp === 0) 
+          startFight()
+          
+        }, 1000);
+
       }, 2000);
 
     }, 2000);
@@ -189,7 +196,7 @@ export default function Fight() {
   let imgSwitch
   if (mobStats.mobCurrentHp === 0) {
     imgSwitch = ripImg
-  } else { imgSwitch = currentMob.mobImg }
+  } else { imgSwitch = selector.mobImg }
 
 
   // funzione di reset
@@ -230,18 +237,18 @@ export default function Fight() {
               <div>
                 <HeroCardBehind inventory={inventory} />
                 <button onClick={() => fight()}> ATTACK</button>
-                <button onClick={() => resetMobStats()}> RESET</button>
+                {/* <button onClick={() => resetMobStats()}> RESET</button> */}
               </div>
             </div>
             <div className='col-4 all-centered hero-container'>
               
-              <monsterFromListContext.Provider value={currentMob}>
+              <monsterFromListContext.Provider value={selector}>
                 <mobStatsContext.Provider value={mobStats}>
                   <mobImgContext.Provider value={imgSwitch}>
                     <MonsterCard />
                   </mobImgContext.Provider></mobStatsContext.Provider></monsterFromListContext.Provider>
             </div>
-            <button onClick={() => startFight()}>FIGHT</button>
+            {/* <button onClick={() => startFight()}>FIGHT</button> */}
           </div>
 
           <div className='row text-white'>
