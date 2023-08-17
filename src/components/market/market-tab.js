@@ -82,7 +82,7 @@ export default function MarketTab() {
                             </div>
                         </th>
                         <td > <span className='fw-bold text-secondary'>HP POTION </span><br /> Heal your hp by 10%</td>
-                        <td>2</td>
+                        <td>5 <img className='coin' src={Coin} alt=''/></td>
                         <td><button onClick={() => buyPotions()}>BUY</button></td>
                     </tr>
 

@@ -160,7 +160,7 @@ export default function Fight() {
         setMobStats(mobStatsUpdater)
 
         // Fa scomparire lo schermo invisibie che ricopre la pagina
-        lock.style.display = `none`
+        
 
         
 
@@ -179,13 +179,23 @@ export default function Fight() {
         setTimeout(() => {
           
           if (mobStats.mobCurrentHp === 0) 
-          startFight()
+          {
+            setTimeout(() => {
+              startFight()
+              lock.style.display = `none`
+            }, 700);
+          } else {
+            setTimeout(() => {
+              lock.style.display = `none`
+            }, 700);
+          }
+          
           
         }, 1000);
 
-      }, 2000);
+      }, 1000);
 
-    }, 2000);
+    }, 1000);
 
   }
 
