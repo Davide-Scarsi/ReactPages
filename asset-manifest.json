@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/ReactPages/static/css/main.e3107f85.css",
-    "main.js": "/ReactPages/static/js/main.d4ab5c51.js",
+    "main.css": "/ReactPages/static/css/main.757a0969.css",
+    "main.js": "/ReactPages/static/js/main.e6f4bbea.js",
     "static/js/787.c2651732.chunk.js": "/ReactPages/static/js/787.c2651732.chunk.js",
     "static/media/LaterBack.png": "/ReactPages/static/media/LaterBack.c437b28fc51e1d4346a2.png",
     "static/media/Later.png": "/ReactPages/static/media/Later.47000c6dc06e5b81a54b.png",
     "static/media/potion.png": "/ReactPages/static/media/potion.52834773f27f932e907c.png",
+    "static/media/wolf.png": "/ReactPages/static/media/wolf.56e9ffc2eaab02b714e7.png",
     "static/media/rip.png": "/ReactPages/static/media/rip.6d639be5f57297f16e0e.png",
     "static/media/boar.png": "/ReactPages/static/media/boar.b44408bcbc6036dd7ac2.png",
     "static/media/potionG.png": "/ReactPages/static/media/potionG.193d7fd6c1e0819e303a.png",
     "static/media/coin.png": "/ReactPages/static/media/coin.7490313c3508a676dffc.png",
     "static/media/border.png": "/ReactPages/static/media/border.36c1834e92c24cefecc7.png",
     "index.html": "/ReactPages/index.html",
-    "main.e3107f85.css.map": "/ReactPages/static/css/main.e3107f85.css.map",
-    "main.d4ab5c51.js.map": "/ReactPages/static/js/main.d4ab5c51.js.map",
+    "main.757a0969.css.map": "/ReactPages/static/css/main.757a0969.css.map",
+    "main.e6f4bbea.js.map": "/ReactPages/static/js/main.e6f4bbea.js.map",
     "787.c2651732.chunk.js.map": "/ReactPages/static/js/787.c2651732.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3107f85.css",
-    "static/js/main.d4ab5c51.js"
+    "static/css/main.757a0969.css",
+    "static/js/main.e6f4bbea.js"
   ]
 }
