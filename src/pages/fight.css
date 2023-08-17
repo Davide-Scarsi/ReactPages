@@ -2,12 +2,29 @@
     height: 100vh;
 }
 
-.death-screen{
+.death-screen, .fight-screen {
     position: absolute;
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: red;
     z-index: 20;
     flex-direction: column;
 }
+
+.death-screen{
+    background-color: rgb(109, 10, 10);
+}
+.fight-screen{
+    background-color: rgb(28, 10, 109);
+}
+
+
+
+#fightButton{
+    position: absolute;
+    z-index: 5;
+    left: 50px;
+    top: 50px;
+    width: 100px;
+}
+

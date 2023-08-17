@@ -2,7 +2,7 @@ import '../../index.css'
 import "./monster-card.css"
 import React from 'react';
 //IMPORT PROPS
-import { monstersListContext } from '../../pages/fight'
+import { monsterFromListContext } from '../../pages/fight'
 import { mobStatsContext } from '../../pages/fight'
 import { mobImgContext } from '../../pages/fight'
 import { useContext } from 'react';
@@ -14,7 +14,7 @@ import { useContext } from 'react';
 export default function MonsterCard () {
 
         //PROPS
-        const monstersList = useContext(monstersListContext);
+        const monsterFromList = useContext(monsterFromListContext);
         const mobStats = useContext(mobStatsContext);
         const mobImg = useContext(mobImgContext);
      
@@ -28,18 +28,19 @@ export default function MonsterCard () {
               hpBarColor = 'red'
           }
 
+         
      
         return (
 
             <div className="ms-5"  >
                 
-                <img className="card-img-top " src={mobImg} alt="Card image cap" />
+                <img className="card-img-top " src={mobImg} alt="" />
                 <div className="card-body">
 
-                    <h5 className="card-title">{monstersList.name}</h5>
+                    <h5 className="card-title">{monsterFromList.name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{(mobStats.mobCurrentHp)*(monstersList.hpMultiplayer)}/{monstersList.maxHp} HP:</p>
+                        <p className="card-text me-1">HP: {(mobStats.mobCurrentHp)*(monsterFromList.hpMultiplayer)}/{monsterFromList.maxHp} </p>
 
                         {/* // HP BAR */}
                         <div className="monster-hp-bar-container">
@@ -49,8 +50,8 @@ export default function MonsterCard () {
                         </div>
 
                     </div>
-                    <p className="card-text">ATTACCO: {monstersList.attack}</p>
-                    <p className="card-text">DIFESA: {monstersList.defence}</p>
+                    <p className="card-text">ATTACCO: {monsterFromList.attack}</p>
+                    <p className="card-text">DIFESA: {monsterFromList.defence}</p>
                
                 </div>
             </div>

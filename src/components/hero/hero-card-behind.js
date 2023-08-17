@@ -3,6 +3,7 @@ import "./hero-card.css"
 import React, { Component } from 'react';
 // IMPORTO LIST EROI
 import {heroesList} from './heroes-list'
+import './hero-card-behind.css'
 
 
 
@@ -31,9 +32,10 @@ export default class HeroCardBehind extends Component {
 
 
         return (
-
+            <>
+         
             <div className="mt-5"  >
-                <img className="card-img-top img-properties" src={heroesList.Later.backImg}  alt="Card image cap" />
+                <img className="card-img-top img-properties BackImg" src={heroesList.Later.backImg}  alt="Card image cap" />
                 <div className="card-body">
 
                     <h5 className="card-title">{heroesList.Later.name}</h5>
@@ -41,7 +43,7 @@ export default class HeroCardBehind extends Component {
                     <div className='d-flex'>
                         <p className="card-text me-1">{this.props.inventory.currentHp*heroesList.Later.hpMultiplayer}/{heroesList.Later.maxHp} HP:</p>
 
-                        {/* // HP BAR */}
+                        {/*  HP BAR */}
                         <div className="hp-bar-container">
                             <div className="hp-bar" style={{ width: `${this.props.inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` }}>
                                 <div className="text-white"></div>
@@ -56,6 +58,8 @@ export default class HeroCardBehind extends Component {
                     </div>
                 </div>
             </div>
+            
+            </>
         );
 
          
