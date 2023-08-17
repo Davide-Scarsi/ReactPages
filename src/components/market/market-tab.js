@@ -54,7 +54,7 @@ export default function MarketTab() {
        
         if (inventory.gold !== 0) {
 
-            inventory.gold = Math.max(inventory.gold - 2, 0);
+            inventory.gold = Math.max(inventory.gold - 5, 0);
             inventory.potions += 1
             const inventoryUpdater = {...inventory}
             setInventory(inventoryUpdater)

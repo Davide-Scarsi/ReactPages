@@ -9,6 +9,7 @@ import { monstersList } from '../components/monster/monsters-list'
 // IMPORTO LISTA EROI
 import { heroesList } from '../components/hero/heroes-list';
 import ripImg from '../images/rip.png';
+import { createContext } from 'react';
 
 //NavActive
 const active = {
@@ -17,6 +18,12 @@ const active = {
   fightColor: { color: "var(--activeColor)" }
 
 }
+
+// EXPORT PROPS
+export const monstersListContext = createContext(null);
+export const mobStatsContext = createContext(null);
+export const mobImgContext = createContext(null);
+
 
 
 
@@ -47,7 +54,7 @@ export default function Fight() {
     window.localStorage.setItem('MOBSTATS', JSON.stringify(mobStats))
   }, [mobStats])
 
-  
+
   const lock = document.getElementById(`lock`)
 
 
@@ -74,31 +81,41 @@ export default function Fight() {
     setTimeout(() => {
 
 
-      if(mobStats.mobCurrentHp !== 0){
-      inventory.currentHp = Math.max(inventory.currentHp - (monstersList.boar.attack / heroesList.Later.hpMultiplayer), 0)
+      if (mobStats.mobCurrentHp !== 0) {
+        inventory.currentHp = Math.max(inventory.currentHp - (monstersList.boar.attack / heroesList.Later.hpMultiplayer), 0)
 
-      inventoryUpdater = { ...inventory }
-      setInventory(inventoryUpdater)
+        inventoryUpdater = { ...inventory }
+        setInventory(inventoryUpdater)
 
-      mobStats.p = "Hai subito un attacco!!"
-      mobStatsUpdater = { ...mobStats }
-      setMobStats(mobStatsUpdater)}else{
+        mobStats.p = "Hai subito un attacco!!"
+        mobStatsUpdater = { ...mobStats }
+        setMobStats(mobStatsUpdater)
+      } else {
 
-       
-      mobStats.p = "Nemico sconfitto!!"
-      mobStatsUpdater = { ...mobStats }
-      setMobStats(mobStatsUpdater)
+        inventory.gold += 5
+
+        inventoryUpdater = { ...inventory }
+        setInventory(inventoryUpdater)
+
+        mobStats.p = "Nemico sconfitto!!"
+        mobStats.p2 = "+5 GOLD"
+
+        mobStatsUpdater = { ...mobStats }
+        setMobStats(mobStatsUpdater)
       }
 
 
 
       setTimeout(() => {
         mobStats.p = ""
+        mobStats.p2 = ""
         mobStatsUpdater = { ...mobStats }
         setMobStats(mobStatsUpdater)
 
         // Fa scomparire lo schermo invisibie che ricopre la pagina
         lock.style.display = `none`
+
+
       }, 2000);
 
     }, 2000);
@@ -106,9 +123,9 @@ export default function Fight() {
   }
 
   let imgSwitch
-if(mobStats.mobCurrentHp === 0){
-  imgSwitch = ripImg
-} else {imgSwitch = monstersList.boar.mobImg}
+  if (mobStats.mobCurrentHp === 0) {
+    imgSwitch = ripImg
+  } else { imgSwitch = monstersList.boar.mobImg }
 
 
   // funzione di reset
@@ -131,12 +148,17 @@ if(mobStats.mobCurrentHp === 0){
                 <button onClick={() => fight()}> ATTACK</button>
                 <button onClick={() => resetMobStats()}> RESET</button>
               </div>
-              <MonsterCard monsterCard={monstersList.boar} mobStats={mobStats} monsterImg={imgSwitch}/>
+              <monstersListContext.Provider value={monstersList.boar}>
+                <mobStatsContext.Provider value={mobStats}>
+                  <mobImgContext.Provider value={imgSwitch}>
+                    <MonsterCard />
+                  </mobImgContext.Provider></mobStatsContext.Provider></monstersListContext.Provider>
             </div>
           </div>
           <div className='row text-white'>
-            <div className='col-12 all-centered'>
+            <div className='col-12 all-centered flex-column'>
               <p className='h3'>{mobStats.p}</p>
+              <p className='h3'>{mobStats.p2}</p>
             </div>
           </div>
         </div>
@@ -146,4 +168,3 @@ if(mobStats.mobCurrentHp === 0){
   )
 
 };
-

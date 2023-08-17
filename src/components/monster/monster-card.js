@@ -1,25 +1,30 @@
 import '../../index.css'
 import "./monster-card.css"
-import React, { Component } from 'react';
+import React from 'react';
+//IMPORT PROPS
+import { monstersListContext } from '../../pages/fight'
+import { mobStatsContext } from '../../pages/fight'
+import { mobImgContext } from '../../pages/fight'
+import { useContext } from 'react';
 
 
-export default class MonsterCard extends Component {
 
-    constructor(props) {
-        super(props);
 
-       
-      }
 
-      render() {
-          
+export default function MonsterCard () {
+
+        //PROPS
+        const monstersList = useContext(monstersListContext);
+        const mobStats = useContext(mobStatsContext);
+        const mobImg = useContext(mobImgContext);
+     
           // Tricolore barra degli hp
           let hpBarColor
-          if(this.props.mobStats.mobCurrentHp>=50){
+          if(mobStats.mobCurrentHp>=50){
               hpBarColor = 'green'} 
-          else if (this.props.mobStats.mobCurrentHp>25 && this.props.mobStats.mobCurrentHp <= 50  ){
+          else if (mobStats.mobCurrentHp>25 && mobStats.mobCurrentHp <= 50  ){
               hpBarColor = 'yellow'}
-          else if(this.props.mobStats.mobCurrentHp<25){
+          else if(mobStats.mobCurrentHp<25){
               hpBarColor = 'red'
           }
 
@@ -28,30 +33,28 @@ export default class MonsterCard extends Component {
 
             <div className="ms-5"  >
                 
-                <img className="card-img-top " src={this.props.monsterImg} alt="Card image cap" />
+                <img className="card-img-top " src={mobImg} alt="Card image cap" />
                 <div className="card-body">
 
-                    <h5 className="card-title">{this.props.monsterCard.name}</h5>
+                    <h5 className="card-title">{monstersList.name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{(this.props.mobStats.mobCurrentHp)*(this.props.monsterCard.hpMultiplayer)}/{this.props.monsterCard.maxHp} HP:</p>
+                        <p className="card-text me-1">{(mobStats.mobCurrentHp)*(monstersList.hpMultiplayer)}/{monstersList.maxHp} HP:</p>
 
                         {/* // HP BAR */}
                         <div className="monster-hp-bar-container">
-                            <div className="monster-hp-bar" style={{ width: `${this.props.mobStats.mobCurrentHp}%`, border: `1px solid black` , backgroundColor: `${hpBarColor}` }}>
+                            <div className="monster-hp-bar" style={{ width: `${mobStats.mobCurrentHp}%`, border: `1px solid black` , backgroundColor: `${hpBarColor}` }}>
                                 <div className="text-white"></div>
                             </div>
                         </div>
 
                     </div>
-                    <p className="card-text">ATTACCO: {this.props.monsterCard.attack}</p>
-                    <p className="card-text">DIFESA: {this.props.monsterCard.defence}</p>
+                    <p className="card-text">ATTACCO: {monstersList.attack}</p>
+                    <p className="card-text">DIFESA: {monstersList.defence}</p>
                
                 </div>
             </div>
         );
 
          
-
-    }
 };
