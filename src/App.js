@@ -72,7 +72,7 @@ function App() {
         <div className='row App-background d-flex justify-content-center pt-5'>
      
           <div className='col-3'>
-          <LaterContext.Provider value={heroesList.Later}>
+          <LaterContext.Provider value={heroesList[0]}>
           
             <inventoryContext.Provider value={inventory}>
               <HeroCard/>
@@ -80,7 +80,7 @@ function App() {
          
           </LaterContext.Provider>
             
-            <button type="button" onClick={()=>setInventory(JSON.parse(DrinkPotion(inventory)))} >DRINK POTION</button>
+            <button type="button" className='btn btn-success' onClick={()=>setInventory(JSON.parse(DrinkPotion(inventory)))} >DRINK POTION</button>
             {/* <button type="button" onClick={()=>setInventory(JSON.parse(addPotion(inventory)))} >AGGIUNGI</button> */}
             {/* <button type="button" onClick={()=>setInventory(JSON.parse(resetInventory(defaultInventory)))} >RESET</button> */}
            

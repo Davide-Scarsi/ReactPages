@@ -13,7 +13,7 @@ import ripImg from '../images/rip.png';
 import { createContext } from 'react';
 import { Link } from "react-router-dom";
 
-
+let buttonStyleStatus
 
 
 //NavActive
@@ -62,6 +62,7 @@ export default function Fight() {
   const [fightStatus, setfightStatus] = useState({ display: `` });
   const [selector, setSelector] = useState(monstersList[0]);
   const [notification, setNotification] = useState("...");
+  const [greyAButton, setgreyAButton] = useState();
 
 
 
@@ -98,6 +99,10 @@ export default function Fight() {
     setNotification(notification)
   }, [notification])
 
+  useEffect(() => {
+    setgreyAButton(greyAButton)
+  }, [greyAButton])
+
 
   // GET ELEMENT BY ID
   const lock = document.getElementById(`lock`)
@@ -111,12 +116,13 @@ export default function Fight() {
 
     // Fa apparire uno schermo invisibie che ricopre la pagina
     lock.style.display = ``
+    setgreyAButton({border: '1px solid grey', color: 'grey' })
 
     let mobStatsUpdater
     let inventoryUpdater
 
 
-    mobStats.mobCurrentHp = Math.round(Math.max(mobStats.mobCurrentHp - (heroesList.Later.attack / selector.hpMultiplayer), 0))
+    mobStats.mobCurrentHp = Math.round(Math.max(mobStats.mobCurrentHp - (heroesList[0].attack / selector.hpMultiplayer), 0))
 
     setNotification("SUCCESSFUL HIT!!")
 
@@ -133,7 +139,7 @@ export default function Fight() {
         if (Math.round(Math.random() * (100)) > selector.hitChance) { setNotification("Mob attack MISSED!!") } else {
 
 
-          inventory.currentHp = Math.max(inventory.currentHp - ((selector.attack - heroesList.Later.defence) / heroesList.Later.hpMultiplayer), 0)
+          inventory.currentHp = Math.max(inventory.currentHp - ((selector.attack - heroesList[0].defence) / heroesList[0].hpMultiplayer), 0)
 
           inventoryUpdater = { ...inventory }
           setInventory(inventoryUpdater)
@@ -180,6 +186,7 @@ export default function Fight() {
 
           deathScreen.style.display = ``
           lock.style.display = ``
+          setgreyAButton({})
         }
 
         setTimeout(() => {
@@ -188,10 +195,12 @@ export default function Fight() {
             setTimeout(() => {
               startFight()
               lock.style.display = `none`
+              setgreyAButton({})
             }, 1000);
           } else {
             setTimeout(() => {
               lock.style.display = `none`
+              setgreyAButton({})
             }, 1000);
           }
 
@@ -223,6 +232,7 @@ export default function Fight() {
   function removeDeathScrean() {
     deathScreen.style.display = `none`
     lock.style.display = `none`
+    buttonStyleStatus = ''
   }
 
 
@@ -264,7 +274,7 @@ export default function Fight() {
             </div>
             {/* <button onClick={() => startFight()}>FIGHT</button> */}
             <div className='fightSequence-button-container'>
-              <button className='fightSequence-button btn btn-outline-danger' onClick={() => fightSequence()}> ATTACK</button>
+              <button style={greyAButton} className='fightSequence-button btn btn-outline-danger' onClick={() => fightSequence()}> ATTACK</button>
             </div>
             <div className='notifications-container '><p >{notification}</p></div>
           </div>

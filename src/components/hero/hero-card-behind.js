@@ -35,13 +35,13 @@ export default class HeroCardBehind extends Component {
             <>
          
             <div className="mt-5"  >
-                <img className="card-img-top img-properties BackImg" src={heroesList.Later.backImg}  alt="Card image cap" />
+                <img className="card-img-top img-properties BackImg" src={heroesList[0].backImg}  alt="Card image cap" />
                 <div className="card-body">
 
-                    <h5 className="card-title">{heroesList.Later.name}</h5>
+                    <h5 className="card-title">{heroesList[0].name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{this.props.inventory.currentHp*heroesList.Later.hpMultiplayer}/{heroesList.Later.maxHp} HP:</p>
+                        <p className="card-text me-1">{this.props.inventory.currentHp*heroesList[0].hpMultiplayer}/{heroesList[0].maxHp} HP:</p>
 
                         {/*  HP BAR */}
                         <div className="hp-bar-container">

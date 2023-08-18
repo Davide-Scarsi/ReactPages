@@ -1,8 +1,10 @@
 import frontImg from '../../images/Later.png'
 import BackImg from '../../images/LaterBack.png'
 
-export const heroesList = {
-    Later : {
+let Later
+
+export const heroesList = [
+    Later = {
         name: "Later",
         maxHp: 500,
         hpMultiplayer: 5,
@@ -11,4 +13,4 @@ export const heroesList = {
         attack: 80,
         defence: 10
     }
-}
+]
