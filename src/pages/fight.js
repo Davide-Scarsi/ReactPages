@@ -25,21 +25,18 @@ const active = {
 }
 
 // EXPORT PROPS
+export const inventoryContext = createContext(null);
 export const monsterFromListContext = createContext(null);
 export const mobStatsContext = createContext(null);
 export const mobImgContext = createContext(null);
 
 
 
-
 const defaultMobStats = { mobCurrentHp: 100 }
 const defaultInventory = { gold: 10, potions: 3, currentHp: 100, }
 
-
+//PAGE
 export default function Fight() {
-
-
-
 
   function startFight() {
 
@@ -47,13 +44,10 @@ export default function Fight() {
 
     let randomNumber = Math.floor(Math.random() * (Object.keys(monstersList).length))
 
-
     setfightStatus({ display: `none` })
     setSelector(monstersList[randomNumber])
 
   }
-
-
 
 
   // LOCAL STORAGE
@@ -63,7 +57,6 @@ export default function Fight() {
   const [selector, setSelector] = useState(monstersList[0]);
   const [notification, setNotification] = useState("...");
   const [greyAButton, setgreyAButton] = useState();
-
 
 
   // Questa funzione parte la prima volta che viene caricata la pagina e va a caricare INVENTARIO dal local storage
@@ -109,14 +102,12 @@ export default function Fight() {
   const deathScreen = document.getElementById(`deathScreen`)
 
 
-
   // Funzione che gestisce il combattimento ----------------------------------------------------------------------------------------------
   function fightSequence() {
 
-
     // Fa apparire uno schermo invisibie che ricopre la pagina
     lock.style.display = ``
-    setgreyAButton({border: '1px solid grey', color: 'grey' })
+    setgreyAButton({ border: '1px solid grey', color: 'grey' })
 
     let mobStatsUpdater
     let inventoryUpdater
@@ -129,15 +120,11 @@ export default function Fight() {
     mobStatsUpdater = { ...mobStats }
     setMobStats(mobStatsUpdater)
 
-
-
     setTimeout(() => {
-
 
       if (mobStats.mobCurrentHp !== 0) {
 
         if (Math.round(Math.random() * (100)) > selector.hitChance) { setNotification("Mob attack MISSED!!") } else {
-
 
           inventory.currentHp = Math.max(inventory.currentHp - ((selector.attack - heroesList[0].defence) / heroesList[0].hpMultiplayer), 0)
 
@@ -163,8 +150,6 @@ export default function Fight() {
         setMobStats(mobStatsUpdater)
       }
 
-
-
       setTimeout(() => {
         setNotification("...")
 
@@ -174,15 +159,10 @@ export default function Fight() {
         // Fa scomparire lo schermo invisibie che ricopre la pagina
 
 
-
-
-
         if (inventory.currentHp === 0) {
 
           setMobStats(defaultMobStats)
           setInventory(defaultInventory)
-
-
 
           deathScreen.style.display = ``
           lock.style.display = ``
@@ -192,11 +172,14 @@ export default function Fight() {
         setTimeout(() => {
 
           if (mobStats.mobCurrentHp === 0) {
-            setTimeout(() => {
-              startFight()
-              lock.style.display = `none`
-              setgreyAButton({})
-            }, 1000);
+           
+            (async function  whenMbDies(){
+            startFight()
+            lock.style.display = `none`
+            await setgreyAButton({})
+            
+          }())
+
           } else {
             setTimeout(() => {
               lock.style.display = `none`
@@ -213,7 +196,7 @@ export default function Fight() {
 
   }
 
-
+//---------------------------------------------------------------------------------------------
 
 
   // Cambia immagine da Mob vivo a morto
@@ -258,13 +241,15 @@ export default function Fight() {
             </div>
 
 
-            <div className='col-6 all-centered hero-container'>
+            <div className='col-6 col-md-3 all-centered hero-container'>
               <div>
-                <HeroCardBehind inventory={inventory} />
+                <inventoryContext.Provider value={inventory}>
+                  <HeroCardBehind />
+                </inventoryContext.Provider>
                 {/* <button onClick={() => resetMobStats()}> RESET</button> */}
               </div>
             </div>
-            <div className='col-4 all-centered hero-container'>
+            <div className='col-6 col-md-4 all-centered hero-container'>
 
               <monsterFromListContext.Provider value={selector}>
                 <mobStatsContext.Provider value={mobStats}>
@@ -279,12 +264,6 @@ export default function Fight() {
             <div className='notifications-container '><p >{notification}</p></div>
           </div>
 
-          <div className='row text-white'>
-            <div className='col-12 all-centered flex-column'>
-              <p className='h3'>{mobStats.p}</p>
-              <p className='h3'>{mobStats.p2}</p>
-            </div>
-          </div>
         </div>
       </div>
 

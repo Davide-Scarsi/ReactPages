@@ -71,7 +71,7 @@ function App() {
       <div className="container-fluid bg-secondary">
         <div className='row App-background d-flex justify-content-center pt-5'>
      
-          <div className='col-3'>
+          <div className='col-12 col-sm-8 col-md-6 col-lg-3'>
           <LaterContext.Provider value={heroesList[0]}>
           
             <inventoryContext.Provider value={inventory}>

@@ -8,3 +8,17 @@
     height: 100%;
 }
 
+.mobImg{
+    object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+
+
+    .monster-hp-bar-container{
+        height: 10px;
+        width: 70%;
+        border: 2px solid black;
+    }
+}
+

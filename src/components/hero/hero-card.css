@@ -6,8 +6,16 @@
 
 
 .img-pozione{
+    object-fit:contain;
     max-width: 10%;
+    aspect-ratio: 0.7;
 }
 
 
+@media screen and (max-width: 768px) {
 
+
+    .hp-bar-container{
+        height: 10px;
+    }
+}

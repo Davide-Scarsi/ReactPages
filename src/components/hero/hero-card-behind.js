@@ -4,28 +4,24 @@ import React, { Component } from 'react';
 // IMPORTO LIST EROI
 import {heroesList} from './heroes-list'
 import './hero-card-behind.css'
+import { useContext } from 'react';
+import { inventoryContext } from '../../pages/fight'
 
 
 
-export default class HeroCardBehind extends Component {
+export default function HeroCardBehind () {
 
-    constructor(props) {
-        super(props);
-        
-      
-    }
-
+    //PROPS
+    const inventory = useContext(inventoryContext);  
       
       
-      render() {
-
         // Tricolore barra degli hp
         let hpBarColor
-        if(this.props.inventory.currentHp>=50){
+        if(inventory.currentHp>=50){
             hpBarColor = 'green'} 
-        else if (this.props.inventory.currentHp>25 && this.props.inventory.currentHp <= 50  ){
+        else if (inventory.currentHp>25 && inventory.currentHp <= 50  ){
             hpBarColor = 'yellow'}
-        else if(this.props.inventory.currentHp<25){
+        else if(inventory.currentHp<25){
             hpBarColor = 'red'
         }
        
@@ -41,11 +37,11 @@ export default class HeroCardBehind extends Component {
                     <h5 className="card-title">{heroesList[0].name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{this.props.inventory.currentHp*heroesList[0].hpMultiplayer}/{heroesList[0].maxHp} HP:</p>
+                        <p className="card-text me-1">{inventory.currentHp*heroesList[0].hpMultiplayer}/{heroesList[0].maxHp} HP:</p>
 
                         {/*  HP BAR */}
                         <div className="hp-bar-container">
-                            <div className="hp-bar" style={{ width: `${this.props.inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` }}>
+                            <div className="hp-bar" style={{ width: `${inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` }}>
                                 <div className="text-white"></div>
                             </div>
                         </div>
@@ -64,5 +60,5 @@ export default class HeroCardBehind extends Component {
 
          
 
-    }
+    
 };

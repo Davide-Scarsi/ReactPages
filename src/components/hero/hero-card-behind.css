@@ -1,4 +1,14 @@
 .BackImg{
-    height: 500px;
-    width: auto;
+    object-fit: contain;
 }
+
+@media screen and (max-width: 768px) {
+
+    
+
+    h5, p{
+        font-size: 10px;
+    }
+
+}
+

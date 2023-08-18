@@ -34,12 +34,12 @@ export default function MonsterCard () {
 
             <div className="ms-5"  >
                 
-                <img className="card-img-top " src={mobImg} alt="" />
-                <div className="card-body">
+                <img className="card-img-top mobImg" src={mobImg} alt="" />
+                <div className="card-body ">
 
-                    <h5 className="card-title">{monsterFromList.name}</h5>
+                    <h5 className="card-title ">{monsterFromList.name}</h5>
 
-                    <div className='d-flex'>
+                    <div className='d-flex flex-column flex-sm-row'>
                         <p className="card-text me-1">HP: {Math.round((mobStats.mobCurrentHp)*(monsterFromList.hpMultiplayer))}/{monsterFromList.maxHp} </p>
 
                         {/* // HP BAR */}
@@ -50,8 +50,8 @@ export default function MonsterCard () {
                         </div>
 
                     </div>
-                    <p className="card-text">ATTACK: {monsterFromList.attack}</p> 
-                    <p className="card-text">DEFENCE: {monsterFromList.defence}</p>
+                    <p className="card-text d-none d-md-block">ATTACK: {monsterFromList.attack}</p> 
+                    <p className="card-text d-none d-md-block">DEFENCE: {monsterFromList.defence}</p>
                
                 </div>
             </div>

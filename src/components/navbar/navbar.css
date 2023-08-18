@@ -1,3 +1,21 @@
 .navbar{
     height: 5vh;
 }
+
+@media screen and (max-width: 990px) {
+
+    .navbar{
+        height: 16vh;
+    }
+
+
+}
+
+@media screen and (max-width: 375px) {
+
+    .navbar{
+        height: 20vh;
+    }
+
+
+}
