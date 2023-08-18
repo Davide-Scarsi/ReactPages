@@ -107,7 +107,7 @@ export default function Fight() {
 
     // Fa apparire uno schermo invisibie che ricopre la pagina
     lock.style.display = ``
-    setgreyAButton({ border: '1px solid grey', color: 'grey' })
+    setgreyAButton({ border: '1px solid grey', color: 'grey'})
 
     let mobStatsUpdater
     let inventoryUpdater
@@ -172,13 +172,13 @@ export default function Fight() {
         setTimeout(() => {
 
           if (mobStats.mobCurrentHp === 0) {
-           
-            (async function  whenMbDies(){
-            startFight()
-            lock.style.display = `none`
-            await setgreyAButton({})
-            
-          }())
+
+            (async function whenMbDies() {
+              startFight()
+              lock.style.display = `none`
+              await setgreyAButton({})
+
+            }())
 
           } else {
             setTimeout(() => {
@@ -196,7 +196,7 @@ export default function Fight() {
 
   }
 
-//---------------------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------------------------
 
 
   // Cambia immagine da Mob vivo a morto
@@ -222,51 +222,53 @@ export default function Fight() {
 
   return (
     <>
-      <div id="lock" style={{ display: `none`, position: `absolute`, top: `0`, zIndex: `10`, height: `100vh`, width: `100vw` }}>lock</div>
+      <body className='bg-secondary vh-100'>
 
-      <div className='bg-secondary Fight-background '>
-        <Navbar active={active} />
-        <div className='container pt-5' >
+        <div id="lock" style={{ display: `none`, position: `absolute`, top: `0`, zIndex: `10`, height: `100vh`, width: `100vw` }}>lock</div>
 
-          <div className='row all-centered bg-dark rounded text-white position-relative hero-container'>
+        <div className='Fight-background '>
+          <Navbar active={active} />
+          <div className='container pt-5' >
 
-            <div id="fightScreen" className='fight-screen all-centered ' style={{ display: `${fightStatus.display}` }}>
-              <h1>READY?</h1>
-              <button onClick={() => startFight()}>FIGHT</button>
-            </div>
+            <div className='row all-centered bg-dark rounded text-white position-relative hero-container'>
 
-            <div id="deathScreen" className='death-screen all-centered ' style={{ display: `none` }}>
-              <h1>YOU DIED</h1>
-              <Link className="nav-link" onClick={() => removeDeathScrean()} to="/">RETRY</Link>
-            </div>
-
-
-            <div className='col-6 col-md-3 all-centered hero-container'>
-              <div>
-                <inventoryContext.Provider value={inventory}>
-                  <HeroCardBehind />
-                </inventoryContext.Provider>
-                {/* <button onClick={() => resetMobStats()}> RESET</button> */}
+              <div id="fightScreen" className='fight-screen all-centered ' style={{ display: `${fightStatus.display}` }}>
+                <h1>READY?</h1>
+                <button onClick={() => startFight()}>FIGHT</button>
               </div>
-            </div>
-            <div className='col-6 col-md-4 all-centered hero-container'>
 
-              <monsterFromListContext.Provider value={selector}>
-                <mobStatsContext.Provider value={mobStats}>
-                  <mobImgContext.Provider value={imgSwitch}>
-                    <MonsterCard />
-                  </mobImgContext.Provider></mobStatsContext.Provider></monsterFromListContext.Provider>
+              <div id="deathScreen" className='death-screen all-centered ' style={{ display: `none` }}>
+                <h1>YOU DIED</h1>
+                <Link className="nav-link" onClick={() => removeDeathScrean()} to="/">RETRY</Link>
+              </div>
+
+
+              <div className='col-6 col-md-3 all-centered hero-container'>
+                <div>
+                  <inventoryContext.Provider value={inventory}>
+                    <HeroCardBehind />
+                  </inventoryContext.Provider>
+                  {/* <button onClick={() => resetMobStats()}> RESET</button> */}
+                </div>
+              </div>
+              <div className='col-6 col-md-4 all-centered hero-container'>
+
+                <monsterFromListContext.Provider value={selector}>
+                  <mobStatsContext.Provider value={mobStats}>
+                    <mobImgContext.Provider value={imgSwitch}>
+                      <MonsterCard />
+                    </mobImgContext.Provider></mobStatsContext.Provider></monsterFromListContext.Provider>
+              </div>
+              {/* <button onClick={() => startFight()}>FIGHT</button> */}
+              <div className='fightSequence-button-container'>
+                <button style={greyAButton} className='fightSequence-button btn btn-outline-danger' onClick={() => fightSequence()}> ATTACK</button>
+              </div>
+              <div className='notifications-container '><p >{notification}</p></div>
             </div>
-            {/* <button onClick={() => startFight()}>FIGHT</button> */}
-            <div className='fightSequence-button-container'>
-              <button style={greyAButton} className='fightSequence-button btn btn-outline-danger' onClick={() => fightSequence()}> ATTACK</button>
-            </div>
-            <div className='notifications-container '><p >{notification}</p></div>
+
           </div>
-
         </div>
-      </div>
-
+      </body>
     </>
 
   )

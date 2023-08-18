@@ -1,6 +1,6 @@
 import '../../index.css'
 import "./hero-card.css"
-import React, { Component } from 'react';
+import React from 'react';
 // IMPORTO LIST EROI
 import {heroesList} from './heroes-list'
 import './hero-card-behind.css'
@@ -31,13 +31,13 @@ export default function HeroCardBehind () {
             <>
          
             <div className="mt-5"  >
-                <img className="card-img-top img-properties BackImg" src={heroesList[0].backImg}  alt="Card image cap" />
+                <img className="card-img-top img-properties BackImg p-3" src={heroesList[0].backImg}  alt="Card image cap" />
                 <div className="card-body">
 
                     <h5 className="card-title">{heroesList[0].name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{inventory.currentHp*heroesList[0].hpMultiplayer}/{heroesList[0].maxHp} HP:</p>
+                        <p className="card-text me-1 "> HP: {inventory.currentHp*heroesList[0].hpMultiplayer}/{heroesList[0].maxHp}</p>
 
                         {/*  HP BAR */}
                         <div className="hp-bar-container">

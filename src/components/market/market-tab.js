@@ -64,13 +64,13 @@ export default function MarketTab() {
     return (
 
 
-        <div className='container '>
+        <div className='container market-container'>
             <table className="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">#OWNED</th>
-                        <th scope="col">ITEM</th>
-                        <th scope="col">PRICE</th>
+                        <th scope="col"><span>#OWNED</span></th>
+                        <th scope="col"><span>ITEM</span></th>
+                        <th scope="col"><span>PRICE</span></th>
                         <th scope="col"> <img className='coin' src={Coin} alt=''/> <span>GOLD: {inventory.gold} </span> </th>
                     </tr>
                 </thead>
@@ -81,9 +81,9 @@ export default function MarketTab() {
                                 <ItemBox /> <span>N° {inventory.potions} </span>
                             </div>
                         </th>
-                        <td > <span className='fw-bold text-secondary'>HP POTION </span><br /> Heal your hp by 10%</td>
+                        <td > <span className='fw-bold text-secondary'>HP POTION </span><br /> <span>Heal your hp by 10%</span></td>
                         <td>5 <img className='coin' src={Coin} alt=''/></td>
-                        <td><button className='btn btn-warning' onClick={() => buyPotions()}>BUY</button></td>
+                        <td><button className='btn btn-warning' onClick={() => buyPotions()}><span>BUY</span></button></td>
                     </tr>
 
 

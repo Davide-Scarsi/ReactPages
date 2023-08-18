@@ -50,3 +50,24 @@
 .notifications-container p{
     font-size: 30px;
 }
+
+.btn-outline-danger {
+    --bs-btn-hover-bg: var(--bg--secondary);
+  }
+
+
+  @media screen and (max-width: 1200px) {
+
+    h5, p{
+        font-size: 10px;
+    }
+
+}
+
+@media screen and (max-width: 375px) {
+
+    h5, p{
+        font-size: 7px;
+    }
+
+}
