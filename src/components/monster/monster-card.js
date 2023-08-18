@@ -50,8 +50,8 @@ export default function MonsterCard () {
                         </div>
 
                     </div>
-                    <p className="card-text">ATTACCO: {monsterFromList.attack}</p> 
-                    <p className="card-text">DIFESA: {monsterFromList.defence}</p>
+                    <p className="card-text">ATTACK: {monsterFromList.attack}</p> 
+                    <p className="card-text">DEFENCE: {monsterFromList.defence}</p>
                
                 </div>
             </div>

@@ -51,10 +51,10 @@ export default function HeroCard () {
                         </div>
 
                     </div>
-                    <p className="card-text">ATTACCO: {Later.attack}</p>
-                    <p className="card-text">DIFESA: {Later.defence}</p>
+                    <p className="card-text">ATTACK: {Later.attack}</p>
+                    <p className="card-text">DEFENCE: {Later.defence}</p>
                     <div className='d-flex'>
-                    <p>POZIONI: {inventory.potions}</p>              
+                    <p>POTIONS: {inventory.potions}</p>              
                     {updatedPotionImg}
                     
 

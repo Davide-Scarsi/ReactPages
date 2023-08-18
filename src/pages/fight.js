@@ -16,8 +16,6 @@ import { Link } from "react-router-dom";
 
 
 
-
-
 //NavActive
 const active = {
   heroColor: { color: "black" },
@@ -34,41 +32,39 @@ export const mobImgContext = createContext(null);
 
 
 
-const defaultMobStats = { mobCurrentHp: 100, p: "", p2:"" }
+const defaultMobStats = { mobCurrentHp: 100 }
 const defaultInventory = { gold: 10, potions: 3, currentHp: 100, }
 
 
 export default function Fight() {
-  
- 
-  
-  
+
+
+
+
   function startFight() {
 
-    setMobStats({ mobCurrentHp: 100, p: "", p2:"" })
-    
+    setMobStats({ mobCurrentHp: 100 })
+
     let randomNumber = Math.floor(Math.random() * (Object.keys(monstersList).length))
-  
-    
-    
-    
-    setfightStatus({display : `none`})
-    setselector(monstersList[randomNumber])
+
+
+    setfightStatus({ display: `none` })
+    setSelector(monstersList[randomNumber])
 
   }
-  
-  
-  
-  
+
+
+
+
   // LOCAL STORAGE
   const [mobStats, setMobStats] = useState(defaultMobStats);
   const [inventory, setInventory] = useState(defaultInventory);
-  const [fightStatus, setfightStatus] = useState({display : ``});
-  const [selector, setselector] = useState(monstersList[0]);
+  const [fightStatus, setfightStatus] = useState({ display: `` });
+  const [selector, setSelector] = useState(monstersList[0]);
+  const [notification, setNotification] = useState("...");
 
-  
 
-  
+
   // Questa funzione parte la prima volta che viene caricata la pagina e va a caricare INVENTARIO dal local storage
   useEffect(() => {
     const data = window.localStorage.getItem('INVENTARIO')
@@ -78,7 +74,7 @@ export default function Fight() {
     const data3 = window.localStorage.getItem('FIGHTSTATUS')
     if (data3 !== null) { setfightStatus(JSON.parse(data3)) }
     const data4 = window.localStorage.getItem('SELECTOR')
-    if (data4 !== null) { setselector(JSON.parse(data4)) }
+    if (data4 !== null) { setSelector(JSON.parse(data4)) }
   }, [])
 
   // Questa funzione è alle dipendenze di "inventory" e parte ogni volta che inventory cambia
@@ -98,14 +94,19 @@ export default function Fight() {
     window.localStorage.setItem('SELECTOR', JSON.stringify(selector))
   }, [selector])
 
+  useEffect(() => {
+    setNotification(notification)
+  }, [notification])
+
 
   // GET ELEMENT BY ID
   const lock = document.getElementById(`lock`)
   const deathScreen = document.getElementById(`deathScreen`)
 
 
-  // Funzione che gestisce il combattimento
-  function fight() {
+
+  // Funzione che gestisce il combattimento ----------------------------------------------------------------------------------------------
+  function fightSequence() {
 
 
     // Fa apparire uno schermo invisibie che ricopre la pagina
@@ -113,12 +114,11 @@ export default function Fight() {
 
     let mobStatsUpdater
     let inventoryUpdater
-    
 
 
     mobStats.mobCurrentHp = Math.round(Math.max(mobStats.mobCurrentHp - (heroesList.Later.attack / selector.hpMultiplayer), 0))
-    
-    mobStats.p = "Hai attaccato con successo!!"
+
+    setNotification("SUCCESSFUL HIT!!")
 
     mobStatsUpdater = { ...mobStats }
     setMobStats(mobStatsUpdater)
@@ -129,14 +129,21 @@ export default function Fight() {
 
 
       if (mobStats.mobCurrentHp !== 0) {
-        inventory.currentHp = Math.max(inventory.currentHp - (selector.attack / heroesList.Later.hpMultiplayer), 0)
 
-        inventoryUpdater = { ...inventory }
-        setInventory(inventoryUpdater)
+        if (Math.round(Math.random() * (100)) > selector.hitChance) { setNotification("Mob attack MISSED!!") } else {
 
-        mobStats.p = "Hai subito un attacco!!"
-        mobStatsUpdater = { ...mobStats }
-        setMobStats(mobStatsUpdater)
+
+          inventory.currentHp = Math.max(inventory.currentHp - ((selector.attack - heroesList.Later.defence) / heroesList.Later.hpMultiplayer), 0)
+
+          inventoryUpdater = { ...inventory }
+          setInventory(inventoryUpdater)
+
+          setNotification("Mob attacked YOU!!")
+          mobStatsUpdater = { ...mobStats }
+          setMobStats(mobStatsUpdater)
+        }
+
+
       } else {
 
         inventory.gold += 5
@@ -144,8 +151,7 @@ export default function Fight() {
         inventoryUpdater = { ...inventory }
         setInventory(inventoryUpdater)
 
-        mobStats.p = "Nemico sconfitto!!"
-        mobStats.p2 = "+5 GOLD"
+        setNotification("Mob DEFETED!! + 5 gold")
 
         mobStatsUpdater = { ...mobStats }
         setMobStats(mobStatsUpdater)
@@ -154,15 +160,15 @@ export default function Fight() {
 
 
       setTimeout(() => {
-        mobStats.p = ""
-        mobStats.p2 = ""
+        setNotification("...")
+
         mobStatsUpdater = { ...mobStats }
         setMobStats(mobStatsUpdater)
 
         // Fa scomparire lo schermo invisibie che ricopre la pagina
-        
 
-        
+
+
 
 
         if (inventory.currentHp === 0) {
@@ -177,25 +183,24 @@ export default function Fight() {
         }
 
         setTimeout(() => {
-          
-          if (mobStats.mobCurrentHp === 0) 
-          {
+
+          if (mobStats.mobCurrentHp === 0) {
             setTimeout(() => {
               startFight()
               lock.style.display = `none`
-            }, 700);
+            }, 1000);
           } else {
             setTimeout(() => {
               lock.style.display = `none`
-            }, 700);
+            }, 1000);
           }
-          
-          
-        }, 1000);
 
-      }, 1000);
 
-    }, 1000);
+        }, 1500);
+
+      }, 1500);
+
+    }, 1500);
 
   }
 
@@ -220,7 +225,7 @@ export default function Fight() {
     lock.style.display = `none`
   }
 
-  
+
 
   return (
     <>
@@ -238,20 +243,19 @@ export default function Fight() {
             </div>
 
             <div id="deathScreen" className='death-screen all-centered ' style={{ display: `none` }}>
-              <h1>SEI MORTO</h1>
-              <Link className="nav-link" onClick={() => removeDeathScrean()} to="/">RIPROVA</Link>
+              <h1>YOU DIED</h1>
+              <Link className="nav-link" onClick={() => removeDeathScrean()} to="/">RETRY</Link>
             </div>
 
 
             <div className='col-6 all-centered hero-container'>
               <div>
                 <HeroCardBehind inventory={inventory} />
-                <button onClick={() => fight()}> ATTACK</button>
                 {/* <button onClick={() => resetMobStats()}> RESET</button> */}
               </div>
             </div>
             <div className='col-4 all-centered hero-container'>
-              
+
               <monsterFromListContext.Provider value={selector}>
                 <mobStatsContext.Provider value={mobStats}>
                   <mobImgContext.Provider value={imgSwitch}>
@@ -259,6 +263,10 @@ export default function Fight() {
                   </mobImgContext.Provider></mobStatsContext.Provider></monsterFromListContext.Provider>
             </div>
             {/* <button onClick={() => startFight()}>FIGHT</button> */}
+            <div className='fightSequence-button-container'>
+              <button className='fightSequence-button btn btn-outline-danger' onClick={() => fightSequence()}> ATTACK</button>
+            </div>
+            <div className='notifications-container '><p >{notification}</p></div>
           </div>
 
           <div className='row text-white'>
@@ -269,7 +277,7 @@ export default function Fight() {
           </div>
         </div>
       </div>
-      
+
     </>
 
   )
