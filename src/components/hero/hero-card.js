@@ -3,18 +3,11 @@ import "./hero-card.css"
 import React from 'react';
 import PotionImg from '../../images/potion.png';
 import PotionImgG from '../../images/potionG.png';
-import { useContext } from 'react';
-
-//IMPORT PROPS
-import { inventoryContext } from '../../App'
-import { LaterContext } from '../../App'
 
 
-export default function HeroCard () {
+
+export default function HeroCard ({heroCard, inventory}) {
  
-        //PROPS
-        const inventory = useContext(inventoryContext);
-        const Later = useContext(LaterContext);
 
         let updatedPotionImg = <></>
         if(inventory.potions!==0){
@@ -35,13 +28,13 @@ export default function HeroCard () {
         return (
 
             <div className="card"  >
-                <img className="card-img-top img-properties" src={Later.frontImg} alt=''/>
+                <img className="card-img-top img-properties" src={heroCard.frontImg} alt=''/>
                 <div className="card-body">
 
-                    <h5 className="card-title">{Later.name}</h5>
+                    <h5 className="card-title">{heroCard.name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1">{inventory.currentHp*Later.hpMultiplayer}/{Later.maxHp} HP:</p>
+                        <p className="card-text me-1">{inventory.currentHp*heroCard.hpMultiplayer}/{heroCard.maxHp} HP:</p>
 
                         {/* // HP BAR */}
                         <div className="hp-bar-container">
@@ -51,8 +44,8 @@ export default function HeroCard () {
                         </div>
 
                     </div>
-                    <p className="card-text">ATTACK: {Later.attack}</p>
-                    <p className="card-text">DEFENCE: {Later.defence}</p>
+                    <p className="card-text">ATTACK: {heroCard.attack}</p>
+                    <p className="card-text">DEFENCE: {heroCard.defence}</p>
                     <div className='d-flex'>
                     <p>POTIONS: {inventory.potions}</p>              
                     {updatedPotionImg}

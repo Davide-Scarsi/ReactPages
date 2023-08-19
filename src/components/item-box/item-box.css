@@ -4,8 +4,19 @@
     border: 10px solid transparent;
     border-image: url(../../images/border.png) 100 round;
     margin: 0;
+    
 }
 
 .img-inside{
     max-width: 60%;
+}
+
+@media screen and (max-width: 375px) {
+
+    .item-box{
+        height: 60px;
+        width: 60px;
+        
+    }
+    
 }

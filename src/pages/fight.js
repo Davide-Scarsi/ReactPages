@@ -10,7 +10,6 @@ import { monstersList } from '../components/monster/monsters-list'
 // IMPORTO LISTA EROI
 import { heroesList } from '../components/hero/heroes-list';
 import ripImg from '../images/rip.png';
-import { createContext } from 'react';
 import { Link } from "react-router-dom";
 
 let buttonStyleStatus
@@ -24,11 +23,6 @@ const active = {
 
 }
 
-// EXPORT PROPS
-export const inventoryContext = createContext(null);
-export const monsterFromListContext = createContext(null);
-export const mobStatsContext = createContext(null);
-export const mobImgContext = createContext(null);
 
 
 
@@ -105,20 +99,18 @@ export default function Fight() {
   // Funzione che gestisce il combattimento ----------------------------------------------------------------------------------------------
   function fightSequence() {
 
+    
+    let inventoryUpdater
+
     // Fa apparire uno schermo invisibie che ricopre la pagina
     lock.style.display = ``
     setgreyAButton({ border: '1px solid grey', color: 'grey'})
-
-    let mobStatsUpdater
-    let inventoryUpdater
-
 
     mobStats.mobCurrentHp = Math.round(Math.max(mobStats.mobCurrentHp - (heroesList[0].attack / selector.hpMultiplayer), 0))
 
     setNotification("SUCCESSFUL HIT!!")
 
-    mobStatsUpdater = { ...mobStats }
-    setMobStats(mobStatsUpdater)
+    setMobStats(mobStats)
 
     setTimeout(() => {
 
@@ -128,12 +120,11 @@ export default function Fight() {
 
           inventory.currentHp = Math.max(inventory.currentHp - ((selector.attack - heroesList[0].defence) / heroesList[0].hpMultiplayer), 0)
 
-          inventoryUpdater = { ...inventory }
-          setInventory(inventoryUpdater)
+          setInventory(inventory)
 
           setNotification("Mob attacked YOU!!")
-          mobStatsUpdater = { ...mobStats }
-          setMobStats(mobStatsUpdater)
+
+          setMobStats(mobStats)
         }
 
 
@@ -141,23 +132,19 @@ export default function Fight() {
 
         inventory.gold += 5
 
-        inventoryUpdater = { ...inventory }
-        setInventory(inventoryUpdater)
+        setInventory(inventory)
 
         setNotification("Mob DEFETED!! + 5 gold")
 
-        mobStatsUpdater = { ...mobStats }
-        setMobStats(mobStatsUpdater)
+        setMobStats(mobStats)
       }
 
       setTimeout(() => {
         setNotification("...")
 
-        mobStatsUpdater = { ...mobStats }
-        setMobStats(mobStatsUpdater)
+        setMobStats(mobStats)
 
         // Fa scomparire lo schermo invisibie che ricopre la pagina
-
 
         if (inventory.currentHp === 0) {
 
@@ -169,8 +156,6 @@ export default function Fight() {
           setgreyAButton({})
         }
 
-        setTimeout(() => {
-
           if (mobStats.mobCurrentHp === 0) {
 
             (async function whenMbDies() {
@@ -181,14 +166,11 @@ export default function Fight() {
             }())
 
           } else {
-            setTimeout(() => {
+            // setTimeout(() => {
               lock.style.display = `none`
               setgreyAButton({})
-            }, 1000);
-          }
-
-
-        }, 1500);
+            // }, 1000);
+          }     
 
       }, 1500);
 
@@ -245,19 +227,15 @@ export default function Fight() {
 
               <div className='col-6 col-md-3 all-centered hero-container'>
                 <div>
-                  <inventoryContext.Provider value={inventory}>
-                    <HeroCardBehind />
-                  </inventoryContext.Provider>
+                  
+                    <HeroCardBehind inventory={inventory}/>
+                 
                   {/* <button onClick={() => resetMobStats()}> RESET</button> */}
                 </div>
               </div>
               <div className='col-6 col-md-4 all-centered hero-container'>
 
-                <monsterFromListContext.Provider value={selector}>
-                  <mobStatsContext.Provider value={mobStats}>
-                    <mobImgContext.Provider value={imgSwitch}>
-                      <MonsterCard />
-                    </mobImgContext.Provider></mobStatsContext.Provider></monsterFromListContext.Provider>
+                      <MonsterCard mobCard={selector} mobStats={mobStats} mobImg={imgSwitch}/>
               </div>
               {/* <button onClick={() => startFight()}>FIGHT</button> */}
               <div className='fightSequence-button-container'>

@@ -1,11 +1,14 @@
 import React from 'react'
-import Navbar from '../components/navbar/navbar';
 
 export default function NoPage() {
 
     return (
         <>
-            <h2>ERROR 404 - PAGE NOT FOUND</h2>
+            <body className='bg-secondary vh-100 text-white all-centered'>
+
+            <h2>ERROR 404 - PAGE NOT FOUND :(</h2>
+
+            </body>
         </>
 
     )

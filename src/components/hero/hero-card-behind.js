@@ -4,24 +4,22 @@ import React from 'react';
 // IMPORTO LIST EROI
 import {heroesList} from './heroes-list'
 import './hero-card-behind.css'
-import { useContext } from 'react';
-import { inventoryContext } from '../../pages/fight'
 
 
 
-export default function HeroCardBehind () {
 
-    //PROPS
-    const inventory = useContext(inventoryContext);  
+export default function HeroCardBehind (props) {
+
+    
       
       
         // Tricolore barra degli hp
         let hpBarColor
-        if(inventory.currentHp>=50){
+        if(props.inventory.currentHp>=50){
             hpBarColor = 'green'} 
-        else if (inventory.currentHp>25 && inventory.currentHp <= 50  ){
+        else if (props.inventory.currentHp>25 && props.inventory.currentHp <= 50  ){
             hpBarColor = 'yellow'}
-        else if(inventory.currentHp<25){
+        else if(props.inventory.currentHp<25){
             hpBarColor = 'red'
         }
        
@@ -37,11 +35,11 @@ export default function HeroCardBehind () {
                     <h5 className="card-title">{heroesList[0].name}</h5>
 
                     <div className='d-flex'>
-                        <p className="card-text me-1 "> HP: {inventory.currentHp*heroesList[0].hpMultiplayer}/{heroesList[0].maxHp}</p>
+                        <p className="card-text me-1 "> HP: {props.inventory.currentHp*heroesList[0].hpMultiplayer}/{heroesList[0].maxHp}</p>
 
                         {/*  HP BAR */}
                         <div className="hp-bar-container">
-                            <div className="hp-bar" style={{ width: `${inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` }}>
+                            <div className="hp-bar" style={{ width: `${props.inventory.currentHp}%`, height: '100%', backgroundColor : `${hpBarColor}` }}>
                                 <div className="text-white"></div>
                             </div>
                         </div>

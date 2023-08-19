@@ -1,22 +1,11 @@
 import '../../index.css'
 import "./monster-card.css"
 import React from 'react';
-//IMPORT PROPS
-import { monsterFromListContext } from '../../pages/fight'
-import { mobStatsContext } from '../../pages/fight'
-import { mobImgContext } from '../../pages/fight'
-import { useContext } from 'react';
 
 
+export default function MonsterCard ({mobCard, mobStats, mobImg}) {
 
-
-
-export default function MonsterCard () {
-
-        //PROPS
-        const monsterFromList = useContext(monsterFromListContext);
-        const mobStats = useContext(mobStatsContext);
-        const mobImg = useContext(mobImgContext);
+       
      
           // Tricolore barra degli hp
           let hpBarColor
@@ -37,10 +26,10 @@ export default function MonsterCard () {
                 <img className="card-img-top mobImg" src={mobImg} alt="" />
                 <div className="card-body ">
 
-                    <h5 className="card-title ">{monsterFromList.name}</h5>
+                    <h5 className="card-title ">{mobCard.name}</h5>
 
                     <div className='d-flex flex-column flex-sm-row'>
-                        <p className="card-text me-1">HP: {Math.round((mobStats.mobCurrentHp)*(monsterFromList.hpMultiplayer))}/{monsterFromList.maxHp} </p>
+                        <p className="card-text me-1">HP: {Math.round((mobStats.mobCurrentHp)*(mobCard.hpMultiplayer))}/{mobCard.maxHp} </p>
 
                         {/* // HP BAR */}
                         <div className="monster-hp-bar-container">
@@ -50,8 +39,8 @@ export default function MonsterCard () {
                         </div>
 
                     </div>
-                    <p className="card-text d-none d-md-block">ATTACK: {monsterFromList.attack}</p> 
-                    <p className="card-text d-none d-md-block">DEFENCE: {monsterFromList.defence}</p>
+                    <p className="card-text d-none d-md-block">ATTACK: {mobCard.attack}</p> 
+                    <p className="card-text d-none d-md-block">DEFENCE: {mobCard.defence}</p>
                
                 </div>
             </div>

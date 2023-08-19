@@ -1,16 +1,8 @@
 import "./navbar.css"
-import React, {Component} from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
 
-export default class Navbar extends Component {
-
-
-    constructor(props) {
-        super(props);
-
-      }
-    
-    render(){
+export default function Navbar ({active}) {
 
         
         return (
@@ -20,13 +12,13 @@ export default class Navbar extends Component {
 
                         <ul className="navbar-nav vw-100 d-flex justify-content-center aligh-items-center">
                             <li className="nav-item">
-                                <Link className="nav-link navbar-brand" style={this.props.active.heroColor} to="/">Hero</Link>
+                                <Link className="nav-link navbar-brand d-flex justify-content-center me-0 me-lg-3" style={active.heroColor} to="/"><span>Hero</span></Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link " style={this.props.active.marketColor} to="/market">Market</Link>
+                                <Link className="nav-link d-flex justify-content-center" style={active.marketColor} to="/market"><span>Market</span></Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link " style={this.props.active.fightColor} to="/fight">Fight</Link>
+                                <Link className="nav-link d-flex justify-content-center" style={active.fightColor} to="/fight"><span>Fight</span></Link>
                             </li>
                         </ul>
 
@@ -35,5 +27,5 @@ export default class Navbar extends Component {
             
         </nav>
     )
-    }
+    
 };

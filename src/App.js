@@ -6,7 +6,6 @@ import HeroCard from './components/hero/hero-card';
 import { useState, useEffect } from 'react';
 // IMPORTO LIST EROI
 import {heroesList} from './components/hero/heroes-list'
-import { createContext } from 'react';
 
 //NavActive
 const active = {
@@ -17,10 +16,6 @@ const active = {
 }
 
 
-
-// EXPORT PROPS
-export const inventoryContext = createContext(null);
-export const LaterContext = createContext(null);
 
 function App() {
   
@@ -72,13 +67,9 @@ function App() {
         <div className='row d-flex justify-content-center p-5'>
      
           <div className='col-12 col-sm-8 col-md-6 col-lg-3'>
-          <LaterContext.Provider value={heroesList[0]}>
-          
-            <inventoryContext.Provider value={inventory}>
-              <HeroCard/>
-            </inventoryContext.Provider>
-         
-          </LaterContext.Provider>
+      
+              <HeroCard heroCard={heroesList[0]} inventory={inventory}/>
+        
             
             <button type="button" className='btn btn-success' onClick={()=>setInventory(JSON.parse(DrinkPotion(inventory)))} >DRINK POTION</button>
             {/* <button type="button" onClick={()=>setInventory(JSON.parse(addPotion(inventory)))} >AGGIUNGI</button> */}

@@ -71,7 +71,7 @@ export default function MarketTab() {
                         <th scope="col"><span>#OWNED</span></th>
                         <th scope="col"><span>ITEM</span></th>
                         <th scope="col"><span>PRICE</span></th>
-                        <th scope="col"> <img className='coin' src={Coin} alt=''/> <span>GOLD: {inventory.gold} </span> </th>
+                        <th scope="col"> <img className='coin' src={Coin} alt=''/> <span >GOLD: {inventory.gold} </span> </th>
                     </tr>
                 </thead>
                 <tbody>
