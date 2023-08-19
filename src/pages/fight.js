@@ -99,18 +99,22 @@ export default function Fight() {
   // Funzione che gestisce il combattimento ----------------------------------------------------------------------------------------------
   function fightSequence() {
 
-    
+    // Fa apparire uno schermo invisibie che ricopre la pagina
+
+    // uso queste variabili "recipiente" altrimenti il Local Storage non si aggiorna
+    let mobStatsUpdater
     let inventoryUpdater
 
-    // Fa apparire uno schermo invisibie che ricopre la pagina
     lock.style.display = ``
     setgreyAButton({ border: '1px solid grey', color: 'grey'})
+
 
     mobStats.mobCurrentHp = Math.round(Math.max(mobStats.mobCurrentHp - (heroesList[0].attack / selector.hpMultiplayer), 0))
 
     setNotification("SUCCESSFUL HIT!!")
 
-    setMobStats(mobStats)
+    mobStatsUpdater = { ...mobStats }
+    setMobStats(mobStatsUpdater)
 
     setTimeout(() => {
 
@@ -120,11 +124,12 @@ export default function Fight() {
 
           inventory.currentHp = Math.max(inventory.currentHp - ((selector.attack - heroesList[0].defence) / heroesList[0].hpMultiplayer), 0)
 
-          setInventory(inventory)
+          inventoryUpdater = { ...inventory }
+          setInventory(inventoryUpdater)
 
           setNotification("Mob attacked YOU!!")
-
-          setMobStats(mobStats)
+          mobStatsUpdater = { ...mobStats }
+          setMobStats(mobStatsUpdater)
         }
 
 
@@ -132,51 +137,51 @@ export default function Fight() {
 
         inventory.gold += 5
 
-        setInventory(inventory)
+        inventoryUpdater = { ...inventory }
+        setInventory(inventoryUpdater)
 
         setNotification("Mob DEFETED!! + 5 gold")
 
-        setMobStats(mobStats)
+        mobStatsUpdater = { ...mobStats }
+        setMobStats(mobStatsUpdater)
       }
 
       setTimeout(() => {
         setNotification("...")
 
-        setMobStats(mobStats)
+        mobStatsUpdater = { ...mobStats }
+        setMobStats(mobStatsUpdater)
 
-        // Fa scomparire lo schermo invisibie che ricopre la pagina
+          // Fa scomparire lo schermo invisibie che ricopre la pagina
 
-        if (inventory.currentHp === 0) {
+          if (inventory.currentHp === 0) {
 
-          setMobStats(defaultMobStats)
-          setInventory(defaultInventory)
-
-          deathScreen.style.display = ``
-          lock.style.display = ``
-          setgreyAButton({})
-        }
-
-          if (mobStats.mobCurrentHp === 0) {
-
-            (async function whenMbDies() {
-              startFight()
-              lock.style.display = `none`
-              await setgreyAButton({})
-
-            }())
-
-          } else {
-            // setTimeout(() => {
-              lock.style.display = `none`
-              setgreyAButton({})
-            // }, 1000);
-          }     
-
+            setMobStats(defaultMobStats)
+            setInventory(defaultInventory)
+  
+            deathScreen.style.display = ``
+            lock.style.display = ``
+            setgreyAButton({})
+          }
+  
+            if (mobStats.mobCurrentHp === 0) {
+  
+              (async function whenMbDies() {
+                startFight()
+                lock.style.display = `none`
+                await setgreyAButton({})
+              }())
+  
+            } else {
+                lock.style.display = `none`
+                setgreyAButton({})
+            }     
+  
+        }, 1500);
+  
       }, 1500);
-
-    }, 1500);
-
-  }
+  
+    }
 
   //---------------------------------------------------------------------------------------------
 
