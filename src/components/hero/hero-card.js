@@ -44,6 +44,9 @@ export default function HeroCard ({heroCard, inventory}) {
                         </div>
 
                     </div>
+                    {inventory.status &&                   
+                    <p className="card-text">STATUS: {inventory.status}</p>
+                    }
                     <p className="card-text">ATTACK: {heroCard.attack}</p>
                     <p className="card-text">DEFENCE: {heroCard.defence}</p>
                     <div className='d-flex'>

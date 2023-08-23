@@ -1,11 +1,13 @@
 import BoarImg from '../../images/boar.png'
 import WolfImg from '../../images/wolf.png'
 import BearImg from '../../images/bear.png'
+import SnakeImg from '../../images/snake.png'
 
 
 let boar
 let wolf
 let bear
+let snake
 
 export const monstersList = [
     boar = {
@@ -42,5 +44,18 @@ export const monstersList = [
         attack: 100,
         defence: 0,
         hitChance: 40
+    },
+
+    snake = {
+        id: 4,
+        name: "Snake",
+        maxHp: 90,
+        hpMultiplayer: 0.9,
+        currentHp: 100,
+        mobImg: SnakeImg,
+        attack: 20,
+        defence: 0,
+        hitChance: 100,
+        ability: 'poison'
     }
 ]
