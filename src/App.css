@@ -33,3 +33,47 @@
   }
 }
 
+/* //----------------------------------------------------------- */
+
+.potion-button, .antidote-button{
+  
+  
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  vertical-align: middle;
+  border: 1px solid;
+  border-radius: 6px;
+  background-color: #fafbfc;
+  border-color: #1b1f2326;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  transition-property: color, background-color, border-color;
+  
+
+}
+button:hover{
+  color: #ffffff;
+  border-color: #1b1f2326;
+  box-shadow: rgba(27, 31, 35, 0.1) 0px 1px 0px 0px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset;
+  transition-duration: 0.1s;
+}
+
+.potion-button{ 
+  color: #d60338;
+}
+.potion-button:hover{ 
+  background-color: #d60338;
+}
+
+.antidote-button{ 
+  color: #a503d6;
+}
+.antidote-button:hover{ 
+  background-color: #a503d6;
+}
+  

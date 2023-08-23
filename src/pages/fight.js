@@ -27,7 +27,7 @@ const active = {
 
 
 const defaultMobStats = { mobCurrentHp: 100 }
-const defaultInventory = { gold: 10, potions: 3, currentHp: 100, }
+const defaultInventory = { gold: 10, potions: 3, currentHp: 100, status:'' }
 
 //PAGE
 export default function Fight() {
@@ -37,6 +37,7 @@ export default function Fight() {
     setMobStats({ mobCurrentHp: 100 })
 
     let randomNumber = Math.floor(Math.random() * (Object.keys(monstersList).length))
+    // let randomNumber = 3
 
     setfightStatus({ display: `none` })
     await setSelector(monstersList[randomNumber])
@@ -225,6 +226,7 @@ export default function Fight() {
 
         if (inventory.currentHp === 0) {
 
+          
           setMobStats(defaultMobStats)
           setInventory(defaultInventory)
 
@@ -233,20 +235,20 @@ export default function Fight() {
           setgreyAButton({})
         }
         
-        if (mobStats.mobCurrentHp === 0) {
+        else if (mobStats.mobCurrentHp === 0) {
           
           
           
-          (async function whenMobDies() {
+          (function whenMobDies() {
             
             checkHeroStatus(inventoryUpdater)
 
             setTimeout(() => {             
               startFight()
+              setgreyAButton({})
             }, 2000);
-
+            
             lock.style.display = `none`
-            await setgreyAButton({})
             
           }())
           
@@ -287,6 +289,7 @@ export default function Fight() {
   }
 
   function removeDeathScrean() {
+
     deathScreen.style.display = `none`
     lock.style.display = `none`
     buttonStyleStatus = ''
@@ -296,7 +299,7 @@ export default function Fight() {
 
   return (
     <>
-      <body className='bg-secondary vh-100'>
+      <div className='bg-secondary vh-100'>
 
         <div id="lock" style={{ display: `none`, position: `absolute`, top: `0`, zIndex: `10`, height: `100vh`, width: `100vw` }}>lock</div>
 
@@ -338,7 +341,7 @@ export default function Fight() {
 
           </div>
         </div>
-      </body>
+      </div>
     </>
 
   )

@@ -11,6 +11,16 @@
     aspect-ratio: 0.7;
 }
 
+.status-box{
+    color: white;
+    background-color: blueviolet;
+    height: max-content;
+    width: 90px;
+    display: flex;
+    justify-content: center;
+    border-radius: 7px;
+}
+
 
 @media screen and (max-width: 768px) {
 

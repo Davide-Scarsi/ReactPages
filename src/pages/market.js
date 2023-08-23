@@ -21,7 +21,7 @@ export default function Market() {
 
     return (
         <>
-            <body className='bg-secondary vh-100'>
+            <div className='bg-secondary vh-100'>
                 <div className=' Market-background'>
                     <Navbar active={active} />
                     <div className='pt-5'>
@@ -29,7 +29,7 @@ export default function Market() {
                     </div>
 
                 </div>
-            </body>
+            </div>
         </>
 
     )

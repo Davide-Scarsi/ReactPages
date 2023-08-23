@@ -4,6 +4,8 @@ import React from 'react';
 import ItemBox from '../item-box/item.box';
 import Coin from '../../images/coin.png'
 import { useState, useEffect } from 'react';
+import Potion from '../../images/potion.png'
+import Antidote from '../../images/antidote.png'
 
 
 
@@ -61,6 +63,17 @@ export default function MarketTab() {
         }
     }
 
+    function buyAntidote() {
+       
+        if (inventory.gold !== 0) {
+
+            inventory.gold = Math.max(inventory.gold - 20, 0);
+            inventory.antidote += 1
+            const inventoryUpdater = {...inventory}
+            setInventory(inventoryUpdater)
+        }
+    }
+
     return (
 
 
@@ -78,12 +91,24 @@ export default function MarketTab() {
                     <tr>
                         <th scope="row">
                             <div className='d-flex'>
-                                <ItemBox /> <span>N° {inventory.potions} </span>
+                                <ItemBox item={Potion}/> <span>N° {inventory.potions} </span>
                             </div>
                         </th>
                         <td > <span className='fw-bold text-secondary'>HP POTION </span><br /> <span>Heal your hp by 10%</span></td>
                         <td>5 <img className='coin' src={Coin} alt=''/></td>
                         <td><button className='btn btn-warning' onClick={() => buyPotions()}><span>BUY</span></button></td>
+                        
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div className='d-flex'>
+                                <ItemBox item={Antidote}/> <span>N° {inventory.antidote} </span>
+                            </div>
+                        </th>
+                        <td > <span className='fw-bold text-secondary'>ANTIDOTE</span><br /> <span>Remove poisoned status</span></td>
+                        <td>20 <img className='coin' src={Coin} alt=''/></td>
+                        <td><button className='btn btn-warning' onClick={() => buyAntidote()}><span>BUY</span></button></td>
+                        
                     </tr>
 
 

@@ -1,13 +1,12 @@
 import React from 'react'
 import './item-box.css'
-import Potion from '../../images/potion.png'
 
 
-export default function ItemBox (){
+export default function ItemBox ({item}){
     return(
         
     <div className='item-box all-centered'>
-        <img className='img-inside' src={Potion} ></img>
+        <img className='img-inside' src={item} ></img>
     </div>
     )
 }

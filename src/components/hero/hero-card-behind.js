@@ -48,7 +48,9 @@ export default function HeroCardBehind(props) {
                     </div>
 
                     {props.inventory.status &&
-                        <p className="card-text">STATUS: {props.inventory.status}</p>
+                        <div className='d-flex'>
+                            <p className="card-text">STATUS:</p><div className='ms-2 status-box'><span>{props.inventory.status}</span></div>
+                        </div>
                     }
 
                     <div className='d-flex'>

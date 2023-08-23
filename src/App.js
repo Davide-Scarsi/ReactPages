@@ -5,27 +5,27 @@ import Navbar from './components/navbar/navbar';
 import HeroCard from './components/hero/hero-card';
 import { useState, useEffect } from 'react';
 // IMPORTO LIST EROI
-import {heroesList} from './components/hero/heroes-list'
+import { heroesList } from './components/hero/heroes-list'
 
 //NavActive
 const active = {
-  heroColor : {color: "var(--activeColor)"},
-  marketColor: {color: "black"},
-  fightColor: {color: "black"}
+  heroColor: { color: "var(--activeColor)" },
+  marketColor: { color: "black" },
+  fightColor: { color: "black" }
 
 }
 
 
 
 function App() {
-  
-  const defaultInventory = { gold: 10, potions: 3, currentHp: 100, status: ''}
-  
+
+  const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 20, status: '' }
+
   const [inventory, setInventory] = useState(defaultInventory);
-  
+
 
   // Questa funzione parte la prima volta che viene caricata la pagina e va a caricare INVENTARIO dal local storage
-  useEffect( () => {
+  useEffect(() => {
     const data = window.localStorage.getItem('INVENTARIO')
     if (data !== null) { setInventory(JSON.parse(data)) }
   }, [])
@@ -37,7 +37,7 @@ function App() {
 
 
   function DrinkPotion(i) {
-    if ((i.potions !== 0)&&(i.currentHp!==100)) {
+    if ((i.potions !== 0) && (i.currentHp !== 100)) {
 
       i.potions--
 
@@ -45,44 +45,56 @@ function App() {
       let constant = 10;
       i.currentHp = Math.min(i.currentHp + constant, maxval);
       return JSON.stringify(i)
-    } else {return JSON.stringify(i)}
+    } else { return JSON.stringify(i) }
   }
   
-  function addPotion(i){
-     i.potions++
-     return JSON.stringify(i)
+  function DrinkAntidote(i) {
+    if ((i.antidote !== 0) && i.status) {
+
+      i.antidote--
+      i.status = ""
+
+      return JSON.stringify(i)
+    } else { return JSON.stringify(i) }
   }
 
-  function resetInventory(i){
+  function addPotion(i) {
+    i.potions++
     return JSON.stringify(i)
- }
+  }
+
+  function resetInventory(i) {
+    return JSON.stringify(i)
+  }
 
 
   return (
     <>
-      <body className='bg-secondary vh-100'>
-      <Navbar active={active}/>
+      <body className='App-body bg-secondary vh-100'>
+        <Navbar active={active} />
 
-      <div className="container-fluid ">
-        <div className='row d-flex justify-content-center p-5'>
-     
-          <div className='col-12 col-sm-8 col-md-6 col-lg-3'>
-      
-              <HeroCard heroCard={heroesList[0]} inventory={inventory}/>
-        
+        <div className="container-fluid ">
+          <div className='row d-flex justify-content-center p-5'>
+
+            <div className='col-12 col-sm-8 col-md-6 col-lg-3'>
+
+              <HeroCard heroCard={heroesList[0]} inventory={inventory} />
+
+
+              <button type="button" className='potion-button' onClick={() => setInventory(JSON.parse(DrinkPotion(inventory)))} >DRINK POTION</button>
+              <button href="#" type="button" className='antidote-button' onClick={() => setInventory(JSON.parse(DrinkAntidote(inventory)))} >DRINK ANTIDOTE</button>
+              {/* <button type="button" onClick={()=>setInventory(JSON.parse(addPotion(inventory)))} >AGGIUNGI</button> */}
+              {/* <button type="button" onClick={()=>setInventory(JSON.parse(resetInventory(defaultInventory)))} >RESET</button> */}
             
-            <button type="button" className='btn btn-success' onClick={()=>setInventory(JSON.parse(DrinkPotion(inventory)))} >DRINK POTION</button>
-            {/* <button type="button" onClick={()=>setInventory(JSON.parse(addPotion(inventory)))} >AGGIUNGI</button> */}
-            {/* <button type="button" onClick={()=>setInventory(JSON.parse(resetInventory(defaultInventory)))} >RESET</button> */}
-           
+
+            </div>
+
           </div>
-      
+
         </div>
 
-      </div>
 
-
-      </body> 
+      </body>
 
     </>
   );

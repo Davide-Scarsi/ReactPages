@@ -3,6 +3,8 @@ import "./hero-card.css"
 import React from 'react';
 import PotionImg from '../../images/potion.png';
 import PotionImgG from '../../images/potionG.png';
+import AntidoteImg from '../../images/antidote.png';
+import AntidoteImgG from '../../images/antidoteG.png';
 
 
 
@@ -13,6 +15,11 @@ export default function HeroCard ({heroCard, inventory}) {
         if(inventory.potions!==0){
             updatedPotionImg = <img className='img-pozione' src={PotionImg} alt=''/>
         } else updatedPotionImg = <img className='img-pozione' src={PotionImgG} alt=''/>
+
+        let updatedAntidoteImg = <></>
+        if(inventory.antidote!==0){
+            updatedAntidoteImg = <img className='img-pozione' src={AntidoteImg} alt=''/>
+        } else updatedAntidoteImg = <img className='img-pozione' src={AntidoteImgG} alt=''/>
 
 
         // Tricolore barra degli hp
@@ -44,14 +51,16 @@ export default function HeroCard ({heroCard, inventory}) {
                         </div>
 
                     </div>
-                    {inventory.status &&                   
-                    <p className="card-text">STATUS: {inventory.status}</p>
+                    {inventory.status &&  <div className='d-flex'>              
+                    <p className="card-text">STATUS:</p><div className='ms-2 status-box'><span>{inventory.status}</span></div>  
+                    </div>   
                     }
                     <p className="card-text">ATTACK: {heroCard.attack}</p>
                     <p className="card-text">DEFENCE: {heroCard.defence}</p>
                     <div className='d-flex'>
-                    <p>POTIONS: {inventory.potions}</p>              
-                    {updatedPotionImg}
+                    <p>POTIONS: {inventory.potions}</p>   {updatedPotionImg} 
+                    <p className='ms-3'>ANTIDOTES: {inventory.antidote}</p> {updatedAntidoteImg}      
+                    
                     
 
                     </div>
