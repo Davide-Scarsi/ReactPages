@@ -28,3 +28,14 @@
         height: 10px;
     }
 }
+
+@media screen and (max-width: 375px) {
+
+    .status-box{
+        width: 60px;
+    }
+
+    .status-box span{
+        font-size: 8PX;
+    }
+}

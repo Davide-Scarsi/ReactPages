@@ -27,7 +27,7 @@ const active = {
 
 
 const defaultMobStats = { mobCurrentHp: 100 }
-const defaultInventory = { gold: 10, potions: 3, currentHp: 100, status:'' }
+const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 100, status:'' }
 
 //PAGE
 export default function Fight() {

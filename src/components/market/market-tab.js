@@ -54,7 +54,7 @@ export default function MarketTab() {
 
     function buyPotions() {
        
-        if (inventory.gold !== 0) {
+        if (inventory.gold !== 0 && inventory.gold>=5) {
 
             inventory.gold = Math.max(inventory.gold - 5, 0);
             inventory.potions += 1
@@ -65,7 +65,7 @@ export default function MarketTab() {
 
     function buyAntidote() {
        
-        if (inventory.gold !== 0) {
+        if (inventory.gold !== 0 && inventory.gold>=20) {
 
             inventory.gold = Math.max(inventory.gold - 20, 0);
             inventory.antidote += 1
