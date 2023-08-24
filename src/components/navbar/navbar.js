@@ -2,9 +2,11 @@ import "../../index.css"
 import "./navbar.css"
 import React from 'react'
 import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 export default function Navbar ({active}) {
 
+    
         
         return (
         
@@ -27,6 +29,7 @@ export default function Navbar ({active}) {
                 </div>
             
         </nav>
+        
     )
     
 };

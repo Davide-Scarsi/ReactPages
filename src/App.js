@@ -67,10 +67,15 @@ function App() {
     return JSON.stringify(i)
   }
 
+  //DEBUG 
+  const debug = ()=>{
+    if(Object.keys(inventory).length !== 5){setInventory({ gold: 10, potions: 3, antidote: 0, currentHp: 100, status: {poisoned: false} })}}
 
   return (
     <>
-      <div className='App-div background vh-100'>
+      <button className='debug-button' onClick={()=>debug()}>DEBUG</button>
+      <div className='App-div background '>
+        
         <Navbar active={active} />
 
         <div className="container-fluid ">

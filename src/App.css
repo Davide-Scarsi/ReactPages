@@ -35,7 +35,7 @@
 
 /* //----------------------------------------------------------- */
 
-.potion-button, .antidote-button{
+.potion-button, .antidote-button , .debug-button{
   
   
   display: inline-block;
@@ -74,5 +74,17 @@ button:hover{
 }
 .antidote-button:hover{ 
   background-color: #a503d6;
+}
+
+.debug-button{
+  position: absolute;
+  z-index: 100;
+  top: 20px;
+  left: 25px;
+  color: white;
+}
+
+.debug-button:hover{
+  background-color: #d60338;
 }
   
