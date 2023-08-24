@@ -19,7 +19,7 @@ const active = {
 
 function App() {
 
-  const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 20, status: '' }
+  const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 100, status: {poisoned: false} }
 
   const [inventory, setInventory] = useState(defaultInventory);
 

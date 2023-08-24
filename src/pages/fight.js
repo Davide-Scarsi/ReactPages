@@ -27,7 +27,7 @@ const active = {
 
 
 const defaultMobStats = { mobCurrentHp: 100 }
-const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 100, status:'' }
+const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 100, status: {poisoned: false} }
 
 //PAGE
 export default function Fight() {
@@ -49,7 +49,7 @@ export default function Fight() {
     if (selector.ability) {
       switch (selector.ability) {
         case "poison":
-          inventory.status = "POISONED"
+          inventory.status.poisoned = true
           inventoryUpdater = { ...inventory }
           setInventory(inventoryUpdater)
           break;
@@ -60,10 +60,9 @@ export default function Fight() {
   }
 
   async function checkHeroStatus(inventoryUpdater) {
-    if (inventory.status) {
 
-      switch (inventory.status) {
-        case "POISONED":
+
+    if (inventory.status.poisoned) {
           setNotification("POISON IS HURTING YOU!!")
     
           inventory.currentHp = Math.max(inventory.currentHp - (20 / heroesList[0].hpMultiplayer), 0)
@@ -82,14 +81,7 @@ export default function Fight() {
             }
             
           }, 3000);
-
-          break;
-
-        default:
-          break;
-      }
-
-      
+    
 
       await setTimeout(() => {
         setNotification("...")       
@@ -241,14 +233,20 @@ export default function Fight() {
           
           (function whenMobDies() {
             
-            checkHeroStatus(inventoryUpdater)
+            
+            setTimeout(() => { 
 
-            setTimeout(() => {             
-              startFight()
+              {inventory.currentHp && startFight()}
+
               setgreyAButton({})
+              lock.style.display = `none`
+
+
             }, 2000);
             
-            lock.style.display = `none`
+            checkHeroStatus(inventoryUpdater)
+
+            
             
           }())
           
@@ -256,13 +254,16 @@ export default function Fight() {
 
         } else {
 
+          setTimeout(() => {
 
-          checkHeroStatus(inventoryUpdater)
-
-          lock.style.display = `none`
-          setgreyAButton({})
-
-          
+            setgreyAButton({})
+            lock.style.display = `none`
+            
+          }, 2000);
+            
+            checkHeroStatus(inventoryUpdater)
+            
+            
 
         }
 

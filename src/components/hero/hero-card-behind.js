@@ -47,9 +47,13 @@ export default function HeroCardBehind(props) {
                         </div>
                     </div>
 
-                    {props.inventory.status &&
+                    {Object.values(props.inventory.status).filter(e => e).length > 0 &&
                         <div className='d-flex'>
-                            <p className="card-text">STATUS:</p><div className='ms-2 status-box'><span>{props.inventory.status}</span></div>
+                            <p className="card-text">STATUS:</p><div className='ms-2 status-box'>
+
+                                <span>{props.inventory.status.poisoned && Object.keys(props.inventory.status)[0].toUpperCase()}</span>
+
+                            </div>
                         </div>
                     }
 

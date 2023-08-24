@@ -36,7 +36,7 @@ export default function MarketTab() {
 
     // render() {
 
-    const [inventory, setInventory] = useState({ gold: 10, potions: 3, currentHp: 50 });
+    const [inventory, setInventory] = useState({ gold: 10, potions: 3, antidote: 0, currentHp: 100, status: {poisoned: false} });
 
     // Questa funzione parte la prima volta che viene caricata la pagina e va a caricare INVENTARIO dal local storage
     useEffect(() => {
