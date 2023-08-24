@@ -19,7 +19,7 @@ const active = {
 
 function App() {
 
-  const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 100, status: {poisoned: false} }
+  let defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 100, status: {poisoned: false} }
 
   const [inventory, setInventory] = useState(defaultInventory);
 
@@ -52,7 +52,7 @@ function App() {
     if ((i.antidote !== 0) && i.status) {
 
       i.antidote--
-      i.status = ""
+      i.status.poisoned = false
 
       return JSON.stringify(i)
     } else { return JSON.stringify(i) }
@@ -67,13 +67,15 @@ function App() {
     return JSON.stringify(i)
   }
 
-  //DEBUG 
+  //RESET
   const debug = ()=>{
-    if(Object.keys(inventory).length !== 5){setInventory({ gold: 10, potions: 3, antidote: 0, currentHp: 100, status: {poisoned: false} })}}
+      localStorage.clear()
+  }
+
 
   return (
     <>
-      <button className='debug-button' onClick={()=>debug()}>DEBUG</button>
+      <button className='debug-button' onClick={()=>debug()}>RESET</button>
       <div className='App-div background '>
         
         <Navbar active={active} />

@@ -79,7 +79,7 @@ button:hover{
 .debug-button{
   position: absolute;
   z-index: 100;
-  top: 20px;
+  top: 21px;
   left: 25px;
   color: white;
 }

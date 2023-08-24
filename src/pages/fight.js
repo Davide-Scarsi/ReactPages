@@ -27,7 +27,7 @@ const active = {
 
 
 const defaultMobStats = { mobCurrentHp: 100 }
-const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 100, status: {poisoned: false} }
+const defaultInventory = { gold: 10, potions: 3, antidote: 0, currentHp: 100, status: { poisoned: false } }
 
 //PAGE
 export default function Fight() {
@@ -59,34 +59,48 @@ export default function Fight() {
     }
   }
 
-  async function checkHeroStatus(inventoryUpdater) {
+   function checkHeroStatus(inventoryUpdater) {
 
+    //Alla fine ritorna vero o falso se l'eroe è affetto da uno stato
+    let triggerSomething = false
 
     if (inventory.status.poisoned) {
-          setNotification("POISON IS HURTING YOU!!")
-    
-          inventory.currentHp = Math.max(inventory.currentHp - (20 / heroesList[0].hpMultiplayer), 0)
-          inventoryUpdater = { ...inventory }
-          await setInventory(inventoryUpdater)
 
-          setTimeout(() => {
-            if (inventory.currentHp === 0) {
-  
-              setMobStats(defaultMobStats)
-              setInventory(defaultInventory)
-      
-              deathScreen.style.display = ``
-              lock.style.display = ``
-              setgreyAButton({})
-            }
-            
-          }, 3000);
-    
+      setNotification("POISON IS HURTING YOU!!")
 
-      await setTimeout(() => {
-        setNotification("...")       
+      inventory.currentHp = Math.max(inventory.currentHp - (20 / heroesList[0].hpMultiplayer), 0)
+      inventoryUpdater = { ...inventory }
+       setInventory(inventoryUpdater)
+
+      setTimeout(() => {
+        if (inventory.currentHp === 0) {
+
+          setMobStats(defaultMobStats)
+          setInventory(defaultInventory)
+
+          deathScreen.style.display = ``
+          lock.style.display = ``
+          setgreyAButton({})
+        }
+
+      }, 3000);
+
+      triggerSomething = true
+
+       setTimeout(() => {
+        setNotification("...")
       }, 2000);
+
+      // AGGIUNGI QUI ALTRI EFFETTI {
+
+      // }
+
+    } else {
+      setNotification("...")
     }
+
+    return triggerSomething
+
   }
 
 
@@ -145,33 +159,30 @@ export default function Fight() {
   // Funzione che gestisce il combattimento ----------------------------------------------------------------------------------------------
   function fightSequence() {
 
-    // Fa apparire uno schermo invisibie che ricopre la pagina
 
     // uso queste variabili "recipiente" altrimenti il Local Storage non si aggiorna
     let mobStatsUpdater
     let inventoryUpdater
 
+    // Fa apparire uno schermo invisibie che ricopre la pagina e rende grigio il tasto "ATTACK"
     lock.style.display = ``
     setgreyAButton({ border: '1px solid grey', color: 'grey' })
 
-
-
-
     mobStats.mobCurrentHp = Math.round(Math.max(mobStats.mobCurrentHp - (heroesList[0].attack / selector.hpMultiplayer), 0))
-
     setNotification("SUCCESSFUL HIT!!")
 
     mobStatsUpdater = { ...mobStats }
     setMobStats(mobStatsUpdater)
 
 
-
-
     setTimeout(() => {
 
       if (mobStats.mobCurrentHp !== 0) {
 
-        if (Math.round(Math.random() * (100)) > selector.hitChance) { setNotification("Mob attack MISSED!!") } else {
+
+        if (Math.round(Math.random() * (100)) > selector.hitChance) { setNotification("Mob attack MISSED!!") }
+
+        else {
 
           inventory.currentHp = Math.max(inventory.currentHp - ((selector.attack - heroesList[0].defence) / heroesList[0].hpMultiplayer), 0)
 
@@ -185,11 +196,7 @@ export default function Fight() {
           // Controlla se nella scheda del mostro ci sono abilità ed esegue azioni di conseguenza
           checkAbility(inventoryUpdater)
 
-
-
-
         }
-
 
       } else {
 
@@ -207,65 +214,77 @@ export default function Fight() {
 
       setTimeout(() => {
 
-        
         setNotification("...")
         mobStatsUpdater = { ...mobStats }
         setMobStats(mobStatsUpdater)
-        
-        
+
+
 
         // Fa scomparire lo schermo invisibie che ricopre la pagina
 
         if (inventory.currentHp === 0) {
 
-          
+          console.log(defaultInventory);
+
           setMobStats(defaultMobStats)
-          setInventory(defaultInventory)
+          setInventory({ gold: 10, potions: 3, antidote: 0, currentHp: 100, status: { poisoned: false } })
 
           deathScreen.style.display = ``
           lock.style.display = ``
           setgreyAButton({})
         }
-        
-        else if (mobStats.mobCurrentHp === 0) {
-          
-          
-          
-          (function whenMobDies() {
-            
-            
-            setTimeout(() => { 
 
-              {inventory.currentHp && startFight()}
+        else if (mobStats.mobCurrentHp === 0) {
+
+    
+            checkHeroStatus(inventoryUpdater)
+            
+            if (checkHeroStatus(inventoryUpdater)) {
+              
+              setTimeout(() => {
+                { inventory.currentHp && startFight() }
+                setgreyAButton({})
+                lock.style.display = `none`
+              }, 2000);}
+              else{
+                { inventory.currentHp && startFight() }
+                setgreyAButton({})
+                lock.style.display = `none`
+              }
+
+
+        } else {
+
+          checkHeroStatus(inventoryUpdater)
+
+
+          if (checkHeroStatus(inventoryUpdater)) {
+            setTimeout(() => {
 
               setgreyAButton({})
               lock.style.display = `none`
 
-
             }, 2000);
-            
-            checkHeroStatus(inventoryUpdater)
-
-            
-            
-          }())
-          
-                         
-
-        } else {
-
-          setTimeout(() => {
+          } else {
 
             setgreyAButton({})
             lock.style.display = `none`
-            
-          }, 2000);
-            
-            checkHeroStatus(inventoryUpdater)
-            
-            
+
+          }
+
+
+
+
 
         }
+
+
+
+
+
+
+
+
 
       }, 2000);
 
@@ -321,7 +340,7 @@ export default function Fight() {
 
                   <HeroCardBehind inventory={inventory} />
 
-                  
+
                 </div>
               </div>
               <div className='col-6 col-md-4 all-centered hero-container'>
