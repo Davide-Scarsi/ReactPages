@@ -1,7 +1,7 @@
 .monster-hp-bar-container{
     height: 25px;
     width: 70%;
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid var(--activeColor);
 }
 
 .monster-hp-bar{
@@ -18,7 +18,6 @@
     .monster-hp-bar-container{
         height: 10px;
         width: 70%;
-        border: 2px solid black;
     }
 }
 

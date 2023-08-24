@@ -2,30 +2,29 @@
     height: 100vh;
 }
 
-.fight-container-background{
-    background-image: linear-gradient(
-        335deg,
-        hsl(223deg 86% 38%) 0%,
-        hsl(223deg 86% 35%) 0%,
-        hsl(223deg 86% 32%) 0%,
-        hsl(223deg 86% 28%) 2%,
-        hsl(223deg 86% 25%) 6%,
-        hsl(223deg 86% 20%) 12%,
-        hsl(223deg 86% 14%) 24%,
-        hsl(0deg 0% 0%) 51%,
-        hsl(240deg 69% 14%) 74%,
-        hsl(240deg 69% 19%) 85%,
-        hsl(240deg 69% 23%) 92%,
-        hsl(240deg 69% 27%) 96%,
-        hsl(240deg 69% 30%) 98%,
-        hsl(240deg 69% 33%) 99%,
-        hsl(240deg 69% 36%) 100%
-      );
-      border-radius: 10px;
-      border: 2px solid var(--activeColor);
+.fight-container-background {
+    background-image: linear-gradient(335deg,
+            hsl(223deg 86% 38%) 0%,
+            hsl(223deg 86% 35%) 0%,
+            hsl(223deg 86% 32%) 0%,
+            hsl(223deg 86% 28%) 2%,
+            hsl(223deg 86% 25%) 6%,
+            hsl(223deg 86% 20%) 12%,
+            hsl(223deg 86% 14%) 24%,
+            hsl(0deg 0% 0%) 51%,
+            hsl(240deg 69% 14%) 74%,
+            hsl(240deg 69% 19%) 85%,
+            hsl(240deg 69% 23%) 92%,
+            hsl(240deg 69% 27%) 96%,
+            hsl(240deg 69% 30%) 98%,
+            hsl(240deg 69% 33%) 99%,
+            hsl(240deg 69% 36%) 100%);
+    border-radius: 10px;
+    border: 2px solid var(--activeColor);
 }
 
-.death-screen, .fight-screen {
+.death-screen,
+.fight-screen {
     position: absolute;
     top: 0;
     height: 100%;
@@ -34,16 +33,17 @@
     flex-direction: column;
 }
 
-.death-screen{
+.death-screen {
     background-color: rgb(109, 10, 10);
 }
-.fight-screen{
+
+.fight-screen {
     background-color: rgb(28, 10, 109);
 }
 
 
 
-#fightButton{
+#fightButton {
     position: absolute;
     z-index: 5;
     left: 50px;
@@ -51,7 +51,7 @@
     width: 100px;
 }
 
-.notifications-container{
+.notifications-container {
     width: 100vw;
     height: 10vh;
     background-color: black;
@@ -60,28 +60,30 @@
     align-items: center;
 }
 
-.fightSequence-button-container{
+.fightSequence-button-container {
     display: flex;
     justify-content: center;
     margin: 10px 0;
 }
-.fightSequence-button{
+
+.fightSequence-button {
     width: 100px;
 }
 
 
-.notifications-container p{
+.notifications-container p {
     font-size: 30px;
 }
 
 .btn-outline-danger {
     --bs-btn-hover-bg: var(--bg--secondary);
-  }
+}
 
 
-  @media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
 
-    h5, p{
+    h5,
+    p {
         font-size: 10px;
     }
 
@@ -89,11 +91,12 @@
 
 @media screen and (max-width: 375px) {
 
-    h5, p{
+    h5,
+    p {
         font-size: 7px;
     }
 
-    .notifications-container p{
+    .notifications-container p {
         margin-top: 20px;
         font-size: 20px;
     }

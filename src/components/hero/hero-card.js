@@ -39,9 +39,9 @@ export default function HeroCard({ heroCard, inventory }) {
 
     return (
 
-        <div className="card"  >
-            <img className="card-img-top img-properties" src={heroCard.frontImg} alt='' />
-            <div className="card-body">
+        <div className=""  >
+            <img className="card-img-top img-properties hero-card-background" src={heroCard.frontImg} alt='' />
+            <div className="card-body hero-card-background text-white p-3">
 
                 <h5 className="card-title">{heroCard.name}</h5>
 

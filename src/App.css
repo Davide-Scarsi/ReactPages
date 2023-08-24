@@ -46,10 +46,9 @@
   font-weight: 500;
   line-height: 20px;
   vertical-align: middle;
-  border: 1px solid;
+  border: 2px solid var(--activeColor);
   border-radius: 6px;
-  background-color: #fafbfc;
-  border-color: #1b1f2326;
+  background-color: #070180;
   box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
   transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   transition-property: color, background-color, border-color;
@@ -64,14 +63,14 @@ button:hover{
 }
 
 .potion-button{ 
-  color: #d60338;
+  color: #ffffff;
 }
 .potion-button:hover{ 
   background-color: #d60338;
 }
 
 .antidote-button{ 
-  color: #a503d6;
+  color: #ffffff;
 }
 .antidote-button:hover{ 
   background-color: #a503d6;

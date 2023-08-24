@@ -2,6 +2,11 @@
     height: 20px;
     aspect-ratio: 1;
 }
+.table th, .table td {
+ background-color: rgb(5, 9, 41);
+ border: var(--activeColor) important!;
+ color: white;
+}
 
 
 

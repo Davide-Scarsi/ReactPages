@@ -24,7 +24,7 @@ export default function Market() {
             <div className='background vh-100'>
                 <div className=' Market-background'>
                     <Navbar active={active} />
-                    <div className='pt-5'>
+                    <div className='pt-5 '>
                         <MarketTab />
                     </div>
 
