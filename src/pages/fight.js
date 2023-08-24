@@ -17,8 +17,8 @@ let buttonStyleStatus
 
 //NavActive
 const active = {
-  heroColor: { color: "black" },
-  marketColor: { color: "black" },
+  heroColor: { color: "white" },
+  marketColor: { color: "white" },
   fightColor: { color: "var(--activeColor)" }
 
 }
@@ -283,11 +283,6 @@ export default function Fight() {
   } else { imgSwitch = selector.mobImg }
 
 
-  // funzione di reset
-  function resetMobStats() {
-    let Update = { ...defaultMobStats }
-    setMobStats(Update)
-  }
 
   function removeDeathScrean() {
 
@@ -300,7 +295,7 @@ export default function Fight() {
 
   return (
     <>
-      <div className='bg-secondary vh-100'>
+      <div className='background vh-100'>
 
         <div id="lock" style={{ display: `none`, position: `absolute`, top: `0`, zIndex: `10`, height: `100vh`, width: `100vw` }}>lock</div>
 
@@ -308,7 +303,7 @@ export default function Fight() {
           <Navbar active={active} />
           <div className='container pt-5' >
 
-            <div className='row all-centered bg-dark rounded text-white position-relative hero-container'>
+            <div className='row all-centered fight-container-background rounded text-white position-relative hero-container'>
 
               <div id="fightScreen" className='fight-screen all-centered ' style={{ display: `${fightStatus.display}` }}>
                 <h1>READY?</h1>
@@ -326,7 +321,7 @@ export default function Fight() {
 
                   <HeroCardBehind inventory={inventory} />
 
-                  {/* <button onClick={() => resetMobStats()}> RESET</button> */}
+                  
                 </div>
               </div>
               <div className='col-6 col-md-4 all-centered hero-container'>

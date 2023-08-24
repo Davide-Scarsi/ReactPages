@@ -7,9 +7,9 @@ import MarketTab from '../components/market/market-tab';
 
 //NavActive
 const active = {
-    heroColor: { color: "black" },
+    heroColor: { color: "white" },
     marketColor: { color: "var(--activeColor)" },
-    fightColor: { color: "black" }
+    fightColor: { color: "white" }
 
 }
 
@@ -21,7 +21,7 @@ export default function Market() {
 
     return (
         <>
-            <div className='bg-secondary vh-100'>
+            <div className='background vh-100'>
                 <div className=' Market-background'>
                     <Navbar active={active} />
                     <div className='pt-5'>

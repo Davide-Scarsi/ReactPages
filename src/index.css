@@ -1,5 +1,6 @@
 :root{
-  --activeColor: red;
+  --activeColor: rgb(250, 186, 9);
+  --bgColor: rgb(7, 7, 124);
 }
 
 body {
@@ -27,3 +28,23 @@ code {
   margin: 0;
   box-sizing: border-box;
 }
+
+.background{
+  background-image: linear-gradient(
+  0deg,
+  hsl(201deg 100% 89%) 0%,
+  hsl(208deg 100% 86%) 5%,
+  hsl(212deg 100% 83%) 9%,
+  hsl(216deg 100% 79%) 13%,
+  hsl(218deg 100% 75%) 15%,
+  hsl(220deg 100% 71%) 18%,
+  hsl(220deg 100% 65%) 19%,
+  hsl(214deg 100% 50%) 21%,
+  hsl(215deg 99% 47%) 22%,
+  hsl(215deg 98% 44%) 24%,
+  hsl(216deg 97% 41%) 26%,
+  hsl(218deg 97% 37%) 29%,
+  hsl(220deg 96% 33%) 35%,
+  hsl(223deg 95% 28%) 44%,
+  hsl(240deg 93% 23%) 76%
+);}

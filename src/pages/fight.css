@@ -2,6 +2,29 @@
     height: 100vh;
 }
 
+.fight-container-background{
+    background-image: linear-gradient(
+        335deg,
+        hsl(223deg 86% 38%) 0%,
+        hsl(223deg 86% 35%) 0%,
+        hsl(223deg 86% 32%) 0%,
+        hsl(223deg 86% 28%) 2%,
+        hsl(223deg 86% 25%) 6%,
+        hsl(223deg 86% 20%) 12%,
+        hsl(223deg 86% 14%) 24%,
+        hsl(0deg 0% 0%) 51%,
+        hsl(240deg 69% 14%) 74%,
+        hsl(240deg 69% 19%) 85%,
+        hsl(240deg 69% 23%) 92%,
+        hsl(240deg 69% 27%) 96%,
+        hsl(240deg 69% 30%) 98%,
+        hsl(240deg 69% 33%) 99%,
+        hsl(240deg 69% 36%) 100%
+      );
+      border-radius: 10px;
+      border: 2px solid var(--activeColor);
+}
+
 .death-screen, .fight-screen {
     position: absolute;
     top: 0;

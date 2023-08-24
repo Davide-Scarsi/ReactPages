@@ -1,3 +1,18 @@
-.nav-link span{
-    border: -1px solid black;
+.nav-container{
+    background-color: #040471
 }
+
+.navbar li{
+    
+    
+    margin: 0;
+    border: 10px solid transparent;
+    border-image: url(../../images/border.png) 80 round;
+}
+
+.navbar .navbar-nav{
+    background-color: rgb(7, 7, 124);
+    border: 2px solid rgb(250, 186, 9);
+}
+
+

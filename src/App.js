@@ -10,8 +10,8 @@ import { heroesList } from './components/hero/heroes-list'
 //NavActive
 const active = {
   heroColor: { color: "var(--activeColor)" },
-  marketColor: { color: "black" },
-  fightColor: { color: "black" }
+  marketColor: { color: "white" },
+  fightColor: { color: "white" }
 
 }
 
@@ -70,7 +70,7 @@ function App() {
 
   return (
     <>
-      <body className='App-body bg-secondary vh-100'>
+      <div className='App-div background vh-100'>
         <Navbar active={active} />
 
         <div className="container-fluid ">
@@ -94,7 +94,7 @@ function App() {
         </div>
 
 
-      </body>
+      </div>
 
     </>
   );
