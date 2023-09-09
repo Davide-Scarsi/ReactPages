@@ -8,7 +8,7 @@ import AntidoteImgG from '../../images/antidoteG.png';
 
 
 
-export default function HeroCard({ heroCard, inventory }) {
+export default function HeroCard({ heroCard, inventory, callBack }) {
 
 
     let updatedPotionImg = <></>
@@ -34,6 +34,35 @@ export default function HeroCard({ heroCard, inventory }) {
         hpBarColor = 'red'
     }
 
+    //Drink Potion
+
+    function handleDrinkPotion(i) {
+        if ((i.potions !== 0) && (i.currentHp !== 100)) {
+
+            i.potions--
+
+            let maxval = 100;
+            let constant = 10;
+            i.currentHp = Math.min(i.currentHp + constant, maxval);
+
+
+            callBack(JSON.stringify(i))
+
+
+        } else { callBack(JSON.stringify(i)) }
+    }
+
+    //Drink Antidote
+
+    function handleDrinkAntidote(i) {
+        if ((i.antidote !== 0) && i.status) {
+
+            i.antidote--
+            i.status.poisoned = false
+
+            callBack(JSON.stringify(i))
+        } else { callBack(JSON.stringify(i)) }
+    }
 
 
 
@@ -56,23 +85,33 @@ export default function HeroCard({ heroCard, inventory }) {
                     </div>
 
                 </div>
-                {Object.values(inventory.status).filter(e => e).length > 0 && 
-                <div className='d-flex'>
-                    <p className="card-text">STATUS:</p><div className='ms-2 status-box'>
+                {Object.values(inventory.status).filter(e => e).length > 0 &&
+                    <div className='d-flex'>
+                        <p className="card-text">STATUS:</p><div className='ms-2 status-box'>
 
-                        <span>{inventory.status.poisoned && Object.keys(inventory.status)[0].toUpperCase()}</span>
+                            <span>{inventory.status.poisoned && Object.keys(inventory.status)[0].toUpperCase()}</span>
 
+                        </div>
                     </div>
-                </div>
                 }
                 <p className="card-text">ATTACK: {heroCard.attack}</p>
                 <p className="card-text">DEFENCE: {heroCard.defence}</p>
                 <div className='d-flex'>
-                    <p>POTIONS: {inventory.potions}</p>   {updatedPotionImg}
-                    <p className='ms-3'>ANTIDOTES: {inventory.antidote}</p> {updatedAntidoteImg}
+                    <div className='d-flex flex-column me-4'>
+                        <div className='d-flex'>
+                            {updatedPotionImg}
+                            <p className='ms-3'>POTIONS: {inventory.potions}</p>
+                        </div>
+                        <button type="button" className='potion-button' onClick={() => handleDrinkPotion(inventory)} >DRINK POTION</button>
+                    </div>
+                    <div className='d-flex flex-column'>
+                        <div className='d-flex'>
+                            {updatedAntidoteImg}
+                            <p className='ms-3'>ANTIDOTES: {inventory.antidote}</p>
+                        </div>
+                        <button href="#" type="button" className='antidote-button' onClick={() => handleDrinkAntidote(inventory)} >DRINK ANTIDOTE</button>
 
-
-
+                    </div>
                 </div>
             </div>
         </div>

@@ -224,10 +224,9 @@ export default function Fight() {
 
         if (inventory.currentHp === 0) {
 
-          console.log(defaultInventory);
-
           setMobStats(defaultMobStats)
-          setInventory({ gold: 10, potions: 3, antidote: 0, currentHp: 100, status: { poisoned: false } })
+          inventoryUpdater = {...defaultInventory}
+          setInventory(inventoryUpdater)
 
           deathScreen.style.display = ``
           lock.style.display = ``

@@ -72,6 +72,13 @@ function App() {
       localStorage.clear()
   }
 
+  // Call Back
+
+  function callBack(payload){
+    setInventory(JSON.parse(payload))
+  }
+
+
 
   return (
     <>
@@ -85,11 +92,10 @@ function App() {
 
             <div className='col-12 col-sm-8 col-md-6 col-lg-3'>
 
-              <HeroCard heroCard={heroesList[0]} inventory={inventory} />
+              <HeroCard heroCard={heroesList[0]} inventory={inventory} callBack={callBack}/>
 
 
-              <button type="button" className='potion-button' onClick={() => setInventory(JSON.parse(DrinkPotion(inventory)))} >DRINK POTION</button>
-              <button href="#" type="button" className='antidote-button' onClick={() => setInventory(JSON.parse(DrinkAntidote(inventory)))} >DRINK ANTIDOTE</button>
+              
               {/* <button type="button" onClick={()=>setInventory(JSON.parse(addPotion(inventory)))} >AGGIUNGI</button> */}
               {/* <button type="button" onClick={()=>setInventory(JSON.parse(resetInventory(defaultInventory)))} >RESET</button> */}
             
